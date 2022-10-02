@@ -1,7 +1,7 @@
 ---
 title: "JSON Web Key (JWK) representation for HPKE Key Encapsulation Mechanisms"
-abbrev: "TODO - Abbreviation"
-category: info
+abbrev: "JWK representation for HPKE KEM"
+category: std
 
 docname: draft-ajitomi-jose-jwk-hpke-kem-latest
 submissiontype: IETF  # also: "independent", "IAB", or "IRTF"
@@ -11,10 +11,6 @@ consensus: true
 v: 3
 area: "Security"
 workgroup: "Javascript Object Signing and Encryption"
-keyword:
- - next generation
- - unicorn
- - sparkling distributed ledger
 venue:
   group: "Javascript Object Signing and Encryption"
   type: "Working Group"
@@ -25,9 +21,9 @@ venue:
 
 author:
  -
-    fullname: Your Name Here
-    organization: Your Organization Here
-    email: "dajiaji@gmail.com"
+    fullname: Daisuke Ajitomi
+    organization: Independent
+    email: "ajitomi@gmail.com"
 
 normative:
 
