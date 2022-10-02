@@ -19,7 +19,7 @@
 # Change the file extension to match the format (.xml for XML, etc...)
 #
 ###
-title: "TODO - Your title"
+title: "JSON Web Key (JWK) representation for HPKE Key Encapsulation Mechanisms"
 abbrev: "TODO - Abbreviation"
 category: info
 
