@@ -1,0 +1,83 @@
+{
+  "magic": "E!vIA5L86J2I",
+  "timestamp": "2022-12-13T00:19:38.882314+00:00",
+  "repo": "dajiaji/i-d-jose-jwk-hpke-kem",
+  "labels": [
+    {
+      "name": "bug",
+      "description": "Something isn't working",
+      "color": "d73a4a"
+    },
+    {
+      "name": "documentation",
+      "description": "Improvements or additions to documentation",
+      "color": "0075ca"
+    },
+    {
+      "name": "duplicate",
+      "description": "This issue or pull request already exists",
+      "color": "cfd3d7"
+    },
+    {
+      "name": "enhancement",
+      "description": "New feature or request",
+      "color": "a2eeef"
+    },
+    {
+      "name": "good first issue",
+      "description": "Good for newcomers",
+      "color": "7057ff"
+    },
+    {
+      "name": "help wanted",
+      "description": "Extra attention is needed",
+      "color": "008672"
+    },
+    {
+      "name": "invalid",
+      "description": "This doesn't seem right",
+      "color": "e4e669"
+    },
+    {
+      "name": "question",
+      "description": "Further information is requested",
+      "color": "d876e3"
+    },
+    {
+      "name": "wontfix",
+      "description": "This will not be worked on",
+      "color": "ffffff"
+    }
+  ],
+  "issues": [],
+  "pulls": [
+    {
+      "number": 1,
+      "id": "PR_kwDOIHG51s5AAJPd",
+      "title": "Update metadata.",
+      "url": "https://github.com/dajiaji/i-d-jose-jwk-hpke-kem/pull/1",
+      "state": "MERGED",
+      "author": "dajiaji",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2022-10-02T08:30:04Z",
+      "updatedAt": "2022-10-02T08:37:28Z",
+      "baseRepository": "dajiaji/i-d-jose-jwk-hpke-kem",
+      "baseRefName": "main",
+      "baseRefOid": "856475b775967a733f42350682d5bc47c8f1e218",
+      "headRepository": "dajiaji/i-d-jose-jwk-hpke-kem",
+      "headRefName": "fix-metadata",
+      "headRefOid": "1d1f099b3682a935c8d9d4fec3d97f066bc9f96c",
+      "closedAt": "2022-10-02T08:37:27Z",
+      "mergedAt": "2022-10-02T08:37:27Z",
+      "mergedBy": "dajiaji",
+      "mergeCommit": {
+        "oid": "6d24883253ebeb7b8a45cdb124e39a3b82f1df45"
+      },
+      "comments": [],
+      "reviews": []
+    }
+  ]
+}
