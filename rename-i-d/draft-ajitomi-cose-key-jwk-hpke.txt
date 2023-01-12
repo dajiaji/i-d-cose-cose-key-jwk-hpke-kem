@@ -4,12 +4,13 @@
 
 Javascript Object Signing and Encryption                      D. Ajitomi
 Internet-Draft                                               Independent
-Intended status: Standards Track                          2 October 2022
-Expires: 5 April 2023
+Intended status: Standards Track                         12 January 2023
+Expires: 16 July 2023
 
 
-JSON Web Key (JWK) representation for HPKE Key Encapsulation Mechanisms
-                 draft-ajitomi-jose-jwk-hpke-kem-latest
+  JSON Web Key and COSE Key representation for HPKE Key Encapsulation
+                               Mechanisms
+                 draft-ajitomi-cose-key-jwk-hpke-latest
 
 Abstract
 
@@ -20,19 +21,17 @@ About This Document
    This note is to be removed before publishing as an RFC.
 
    The latest revision of this draft can be found at
-   https://dajiaji.github.io/i-d-jose-jwk-hpke-public-key/draft-ajitomi-
-   jose-jwk-hpke-kem.html.  Status information for this document may be
-   found at https://datatracker.ietf.org/doc/draft-ajitomi-jose-jwk-
-   hpke-kem/.
+   https://dajiaji.github.io/i-d-cose-key-jwk-hpke/draft-ajitomi-cose-
+   key-jwk-hpke.html.  Status information for this document may be found
+   at https://datatracker.ietf.org/doc/draft-ajitomi-cose-key-jwk-hpke/.
 
-   Discussion of this document takes place on the Javascript Object
-   Signing and Encryption Working Group mailing list
-   (mailto:jose@ietf.org), which is archived at
-   https://mailarchive.ietf.org/arch/browse/jose/.  Subscribe at
-   https://www.ietf.org/mailman/listinfo/jose/.
+   Discussion of this document takes place on the CBOR Object Signing
+   and Encryption Working Group mailing list (mailto:cose@ietf.org),
+   which is archived at https://mailarchive.ietf.org/arch/browse/cose/.
+   Subscribe at https://www.ietf.org/mailman/listinfo/cose/.
 
    Source for this draft and an issue tracker can be found at
-   https://github.com/dajiaji/i-d-jose-jwk-hpke-public-key.
+   https://github.com/dajiaji/i-d-cose-key-jwk-hpke.
 
 Status of This Memo
 
@@ -49,11 +48,11 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 5 April 2023.
+   This Internet-Draft will expire on 16 July 2023.
 
 Copyright Notice
 
-   Copyright (c) 2022 IETF Trust and the persons identified as the
+   Copyright (c) 2023 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal

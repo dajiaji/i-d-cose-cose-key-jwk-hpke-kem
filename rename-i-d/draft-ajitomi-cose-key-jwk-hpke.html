@@ -4,32 +4,32 @@
 <meta charset="utf-8">
 <meta content="Common,Latin" name="scripts">
 <meta content="initial-scale=1.0" name="viewport">
-<title>JSON Web Key (JWK) representation for HPKE Key Encapsulation Mechanisms</title>
+<title>JSON Web Key and COSE Key representation for HPKE Key Encapsulation Mechanisms</title>
 <meta content="Daisuke Ajitomi" name="author">
 <meta content="
        TODO Abstract 
     " name="description">
-<meta content="xml2rfc 3.14.2" name="generator">
-<meta content="draft-ajitomi-jose-jwk-hpke-kem-latest" name="ietf.draft">
+<meta content="xml2rfc 3.15.3" name="generator">
+<meta content="draft-ajitomi-cose-key-jwk-hpke-latest" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.14.2
-    Python 3.10.5
+  xml2rfc 3.15.3
+    Python 3.10.9
     appdirs 1.4.4
     ConfigArgParse 1.5.3
     google-i18n-address 2.5.2
     html5lib 1.1
     intervaltree 3.1.0
     Jinja2 3.1.2
-    kitchen 1.2.6
-    lxml 4.9.1
+    lxml 4.9.2
     MarkupSafe 2.1.1
     pycountry 22.3.5
     PyYAML 6.0
-    requests 2.27.1
-    setuptools 59.4.0
+    requests 2.28.1
+    setuptools 65.6.0
     six 1.16.0
+    wcwidth 0.2.5
 -->
-<link href="draft-ajitomi-jose-jwk-hpke-kem.xml" rel="alternate" type="application/rfc+xml">
+<link href="draft-ajitomi-cose-key-jwk-hpke.xml" rel="alternate" type="application/rfc+xml">
 <link href="#copyright" rel="license">
 <style type="text/css">@font-face {
   font-family: 'Lora';
@@ -371,7 +371,7 @@ dl {
 dl > dt {
   float: left;
   margin-right: 1em;
-  min-width: 20ch;
+  min-width: 12ch;
 }
 dl.dlNewline > dt {
   float: none;
@@ -394,7 +394,7 @@ dl > dd > dl {
   margin-top: 0.5em;
   margin-bottom: 0;
 }
-dl .break {
+:is(dd, span).break {
   display: none;
 }
 
@@ -414,7 +414,7 @@ a[href]:hover {
 a[href].selfRef:hover {
   background-color: var(--highlight-color);
 }
-a.xref {
+a.xref:is(.cite, .auto), :is(#status-of-memo, #copyright) a {
   white-space: nowrap;
 }
 
@@ -426,7 +426,9 @@ tt, code, pre {
 tt, code {
   /* changing the font for inline elements leads to different ascender
      and descender heights; as we want to retain baseline alignment,
-     remove leading to avoid altering the final height of lines */
+     remove leading to avoid altering the final height of lines
+     note: this fails if these blocks take an entire line,
+     a different solution would be great */
   line-height: 0;
 }
 :is(h1, h2, h3, h4, h5, h6) :is(tt, code) {
@@ -1023,22 +1025,22 @@ svg :is([stroke="white"], [stroke^="#fff"]) {
 svg :is([fill="black"], [fill^="#000"], :not([fill])) {
   fill: var(--text-color);
 }
-svg :is([stroke="fill"], [fill^="#fff"]) {
+svg :is([fill="white"], [fill^="#fff"]) {
   fill: var(--background-color);
 }
 </style>
 
 </head>
-<body>
+<body class="xml2rfc">
 <table class="ears">
 <thead><tr>
 <td class="left">Internet-Draft</td>
-<td class="center">JWK representation for HPKE KEM</td>
-<td class="right">October 2022</td>
+<td class="center">JWK and COSE Key representation for HPKE</td>
+<td class="right">January 2023</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Ajitomi</td>
-<td class="center">Expires 5 April 2023</td>
+<td class="center">Expires 16 July 2023</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1048,15 +1050,15 @@ svg :is([stroke="fill"], [fill^="#fff"]) {
 <dt class="label-workgroup">Workgroup:</dt>
 <dd class="workgroup">Javascript Object Signing and Encryption</dd>
 <dt class="label-internet-draft">Internet-Draft:</dt>
-<dd class="internet-draft">draft-ajitomi-jose-jwk-hpke-kem-latest</dd>
+<dd class="internet-draft">draft-ajitomi-cose-key-jwk-hpke-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2022-10-02" class="published">2 October 2022</time>
+<time datetime="2023-01-12" class="published">12 January 2023</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2023-04-05">5 April 2023</time></dd>
+<dd class="expires"><time datetime="2023-07-16">16 July 2023</time></dd>
 <dt class="label-authors">Author:</dt>
 <dd class="authors">
 <div class="author">
@@ -1066,7 +1068,7 @@ svg :is([stroke="fill"], [fill^="#fff"]) {
 </dd>
 </dl>
 </div>
-<h1 id="title">JSON Web Key (JWK) representation for HPKE Key Encapsulation Mechanisms</h1>
+<h1 id="title">JSON Web Key and COSE Key representation for HPKE Key Encapsulation Mechanisms</h1>
 <section id="section-abstract">
       <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
 <p id="section-abstract-1">TODO Abstract<a href="#section-abstract-1" class="pilcrow">¶</a></p>
@@ -1077,15 +1079,15 @@ svg :is([stroke="fill"], [fill^="#fff"]) {
       </h2>
 <p id="section-note.1-1">This note is to be removed before publishing as an RFC.<a href="#section-note.1-1" class="pilcrow">¶</a></p>
 <p id="section-note.1-2">
-        The latest revision of this draft can be found at <span><a href="https://dajiaji.github.io/i-d-jose-jwk-hpke-public-key/draft-ajitomi-jose-jwk-hpke-kem.html">https://dajiaji.github.io/i-d-jose-jwk-hpke-public-key/draft-ajitomi-jose-jwk-hpke-kem.html</a></span>.
-        Status information for this document may be found at <span><a href="https://datatracker.ietf.org/doc/draft-ajitomi-jose-jwk-hpke-kem/">https://datatracker.ietf.org/doc/draft-ajitomi-jose-jwk-hpke-kem/</a></span>.<a href="#section-note.1-2" class="pilcrow">¶</a></p>
+        The latest revision of this draft can be found at <span><a href="https://dajiaji.github.io/i-d-cose-key-jwk-hpke/draft-ajitomi-cose-key-jwk-hpke.html">https://dajiaji.github.io/i-d-cose-key-jwk-hpke/draft-ajitomi-cose-key-jwk-hpke.html</a></span>.
+        Status information for this document may be found at <span><a href="https://datatracker.ietf.org/doc/draft-ajitomi-cose-key-jwk-hpke/">https://datatracker.ietf.org/doc/draft-ajitomi-cose-key-jwk-hpke/</a></span>.<a href="#section-note.1-2" class="pilcrow">¶</a></p>
 <p id="section-note.1-3">
         Discussion of this document takes place on the
-        Javascript Object Signing and Encryption Working Group mailing list (<span><a href="mailto:jose@ietf.org">mailto:jose@ietf.org</a></span>),
-        which is archived at <span><a href="https://mailarchive.ietf.org/arch/browse/jose/">https://mailarchive.ietf.org/arch/browse/jose/</a></span>.
-        Subscribe at <span><a href="https://www.ietf.org/mailman/listinfo/jose/">https://www.ietf.org/mailman/listinfo/jose/</a></span>.<a href="#section-note.1-3" class="pilcrow">¶</a></p>
+        CBOR Object Signing and Encryption Working Group mailing list (<span><a href="mailto:cose@ietf.org">mailto:cose@ietf.org</a></span>),
+        which is archived at <span><a href="https://mailarchive.ietf.org/arch/browse/cose/">https://mailarchive.ietf.org/arch/browse/cose/</a></span>.
+        Subscribe at <span><a href="https://www.ietf.org/mailman/listinfo/cose/">https://www.ietf.org/mailman/listinfo/cose/</a></span>.<a href="#section-note.1-3" class="pilcrow">¶</a></p>
 <p id="section-note.1-4">Source for this draft and an issue tracker can be found at
-        <span><a href="https://github.com/dajiaji/i-d-jose-jwk-hpke-public-key">https://github.com/dajiaji/i-d-jose-jwk-hpke-public-key</a></span>.<a href="#section-note.1-4" class="pilcrow">¶</a></p>
+        <span><a href="https://github.com/dajiaji/i-d-cose-key-jwk-hpke">https://github.com/dajiaji/i-d-cose-key-jwk-hpke</a></span>.<a href="#section-note.1-4" class="pilcrow">¶</a></p>
 </section>
 <div id="status-of-memo">
 <section id="section-boilerplate.1">
@@ -1106,7 +1108,7 @@ svg :is([stroke="fill"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 5 April 2023.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 16 July 2023.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1115,7 +1117,7 @@ svg :is([stroke="fill"], [fill^="#fff"]) {
 <a href="#name-copyright-notice" class="section-name selfRef">Copyright Notice</a>
         </h2>
 <p id="section-boilerplate.2-1">
-            Copyright (c) 2022 IETF Trust and the persons identified as the
+            Copyright (c) 2023 IETF Trust and the persons identified as the
             document authors. All rights reserved.<a href="#section-boilerplate.2-1" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.2-2">
             This document is subject to BCP 78 and the IETF Trust's Legal
@@ -1136,25 +1138,25 @@ svg :is([stroke="fill"], [fill^="#fff"]) {
         </h2>
 <nav class="toc"><ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.1">
-            <p id="section-toc.1-1.1.1" class="keepWithNext"><a href="#section-1" class="xref">1</a>.  <a href="#name-introduction" class="xref">Introduction</a></p>
+            <p id="section-toc.1-1.1.1" class="keepWithNext"><a href="#section-1" class="auto internal xref">1</a>.  <a href="#name-introduction" class="internal xref">Introduction</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2">
-            <p id="section-toc.1-1.2.1" class="keepWithNext"><a href="#section-2" class="xref">2</a>.  <a href="#name-conventions-and-definitions" class="xref">Conventions and Definitions</a></p>
+            <p id="section-toc.1-1.2.1" class="keepWithNext"><a href="#section-2" class="auto internal xref">2</a>.  <a href="#name-conventions-and-definitions" class="internal xref">Conventions and Definitions</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3">
-            <p id="section-toc.1-1.3.1" class="keepWithNext"><a href="#section-3" class="xref">3</a>.  <a href="#name-security-considerations" class="xref">Security Considerations</a></p>
+            <p id="section-toc.1-1.3.1" class="keepWithNext"><a href="#section-3" class="auto internal xref">3</a>.  <a href="#name-security-considerations" class="internal xref">Security Considerations</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4">
-            <p id="section-toc.1-1.4.1"><a href="#section-4" class="xref">4</a>.  <a href="#name-iana-considerations" class="xref">IANA Considerations</a></p>
+            <p id="section-toc.1-1.4.1"><a href="#section-4" class="auto internal xref">4</a>.  <a href="#name-iana-considerations" class="internal xref">IANA Considerations</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5">
-            <p id="section-toc.1-1.5.1"><a href="#section-5" class="xref">5</a>.  <a href="#name-normative-references" class="xref">Normative References</a></p>
+            <p id="section-toc.1-1.5.1"><a href="#section-5" class="auto internal xref">5</a>.  <a href="#name-normative-references" class="internal xref">Normative References</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6">
-            <p id="section-toc.1-1.6.1"><a href="#appendix-A" class="xref"></a><a href="#name-acknowledgments" class="xref">Acknowledgments</a></p>
+            <p id="section-toc.1-1.6.1"><a href="#appendix-A" class="auto internal xref"></a><a href="#name-acknowledgments" class="internal xref">Acknowledgments</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7">
-            <p id="section-toc.1-1.7.1"><a href="#appendix-B" class="xref"></a><a href="#name-authors-address" class="xref">Author's Address</a></p>
+            <p id="section-toc.1-1.7.1"><a href="#appendix-B" class="auto internal xref"></a><a href="#name-authors-address" class="internal xref">Author's Address</a></p>
 </li>
         </ul>
 </nav>
@@ -1175,7 +1177,7 @@ svg :is([stroke="fill"], [fill^="#fff"]) {
       </h2>
 <p id="section-2-1">The key words "<span class="bcp14">MUST</span>", "<span class="bcp14">MUST NOT</span>", "<span class="bcp14">REQUIRED</span>", "<span class="bcp14">SHALL</span>", "<span class="bcp14">SHALL NOT</span>", "<span class="bcp14">SHOULD</span>", "<span class="bcp14">SHOULD NOT</span>", "<span class="bcp14">RECOMMENDED</span>", "<span class="bcp14">NOT RECOMMENDED</span>",
 "<span class="bcp14">MAY</span>", and "<span class="bcp14">OPTIONAL</span>" in this document are to be interpreted as
-described in BCP 14 <span>[<a href="#RFC2119" class="xref">RFC2119</a>]</span> <span>[<a href="#RFC8174" class="xref">RFC8174</a>]</span> when, and only when, they
+described in BCP 14 <span>[<a href="#RFC2119" class="cite xref">RFC2119</a>]</span> <span>[<a href="#RFC8174" class="cite xref">RFC8174</a>]</span> when, and only when, they
 appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶</a></p>
 </section>
 </div>
