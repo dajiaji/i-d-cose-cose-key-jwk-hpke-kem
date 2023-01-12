@@ -2,7 +2,7 @@
 
 
 
-Javascript Object Signing and Encryption                      D. Ajitomi
+CBOR Object Signing and Encryption                            D. Ajitomi
 Internet-Draft                                               Independent
 Intended status: Standards Track                         12 January 2023
 Expires: 16 July 2023
