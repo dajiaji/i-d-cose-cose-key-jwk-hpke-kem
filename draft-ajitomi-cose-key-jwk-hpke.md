@@ -1,9 +1,9 @@
 ---
-title: "JSON Web Key (JWK) representation for HPKE Key Encapsulation Mechanisms"
-abbrev: "JWK representation for HPKE KEM"
+title: "JSON Web Key and COSE Key representation for HPKE Key Encapsulation Mechanisms"
+abbrev: "JWK and COSE Key representation for HPKE KEM"
 category: std
 
-docname: draft-ajitomi-jose-jwk-hpke-kem-latest
+docname: draft-ajitomi-cose-key-jwk-hpke-latest
 submissiontype: IETF  # also: "independent", "IAB", or "IRTF"
 number:
 date:
@@ -12,12 +12,12 @@ v: 3
 area: "Security"
 workgroup: "Javascript Object Signing and Encryption"
 venue:
-  group: "Javascript Object Signing and Encryption"
+  group: "CBOR Object Signing and Encryption"
   type: "Working Group"
-  mail: "jose@ietf.org"
-  arch: "https://mailarchive.ietf.org/arch/browse/jose/"
-  github: "dajiaji/i-d-jose-jwk-hpke-public-key"
-  latest: "https://dajiaji.github.io/i-d-jose-jwk-hpke-public-key/draft-ajitomi-jose-jwk-hpke-kem.html"
+  mail: "cose@ietf.org"
+  arch: "https://mailarchive.ietf.org/arch/browse/cose/"
+  github: "dajiaji/i-d-cose-key-jwk-hpke"
+  latest: "https://dajiaji.github.io/i-d-cose-key-jwk-hpke/draft-ajitomi-cose-key-jwk-hpke.html"
 
 author:
  -
