@@ -10,7 +10,7 @@ date:
 consensus: true
 v: 3
 area: "Security"
-workgroup: "Javascript Object Signing and Encryption"
+workgroup: "CBOR Object Signing and Encryption"
 venue:
   group: "CBOR Object Signing and Encryption"
   type: "Working Group"
