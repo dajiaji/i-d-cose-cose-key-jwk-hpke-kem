@@ -132,15 +132,15 @@ A key with this kty has the following parameters:
 - The parameter "pub" MUST be present and contains the public key encoded using the base64url [RFC4648] encoding.
 - The parameter "priv" MUST be present if the key is private key and contains the private key encoded using the base64url [RFC4648] encoding.
 
-## Key Type HPKE-KEM(T.B.D.) for COSE_Key
+## Key Type HPKE-KEM for COSE_Key
 
 A new generic kty(1) value HPKE-KEM(T.B.D.) is defined to represent the private and public key used for the HPKE KEM.
 A key with this kty has the following parameters:
 
 - The parameter kty(1) MUST be HPKE-KEM(T.B.D).
 - The parameter hkc(T.B.D.) MUST be present and contains the HPKE Key Configuration defined in Section X.X.
-- The parameter pub(T.B.D.) MUST be present and contains the public key encoded using the base64url [RFC4648] encoding.
-- The parameter priv(T.B.D.) MUST be present if the key is private key and contains the private key encoded using the base64url [RFC4648] encoding.
+- The parameter pub(-1) MUST be present and contains the public key encoded using the base64url [RFC4648] encoding.
+- The parameter priv(-2) MUST be present if the key is private key and contains the private key encoded using the base64url [RFC4648] encoding.
 
 # Security Considerations
 
