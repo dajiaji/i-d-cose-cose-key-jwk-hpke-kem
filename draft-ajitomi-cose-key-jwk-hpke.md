@@ -1,6 +1,6 @@
 ---
 title: "COSE Key and JSON Web Key Representation for Key Encapsulation Mechanism (KEM) of Hybrid Public Key Encryption (HPKE)"
-abbrev: "COSE Key and JWK Representation for KEM of HPKE"
+abbrev: "COSE Key and JWK Representation for HPKE KEM"
 category: std
 
 docname: draft-ajitomi-cose-key-jwk-hpke-latest
