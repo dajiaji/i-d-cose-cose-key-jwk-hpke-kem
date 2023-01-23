@@ -1,4 +1,4 @@
-# JSON Web Key and COSE Key Representation for HPKE Key Encapsulation Mechanisms
+# COSE Key and JSON Web Key Representation for Key Encapsulation Mechanism (KEM) of Hybrid Public Key Encryption (HPKE)
 
 This is the working area for the individual Internet-Draft, "JSON Web Key and COSE key Representation for HPKE Key Encapsulation Mechanisms".
 
