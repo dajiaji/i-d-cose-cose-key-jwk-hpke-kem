@@ -78,7 +78,7 @@ The restrictions on the use of existing common key parameters in a JWK for the H
 
 The KEM key configuration parameter for COSE_Key is defined as follows:
 
-- hkc (HPKE Key Configuration): The parameter MUST contain an array structure named HPKE_Key_COnfiguration, which contains the same information as "hkc" in JWK above. The CDDL grammar describing the HPKE_Key_Configuration structure is:
+- hkc (HPKE Key Configuration): The parameter MUST contain an array structure named HPKE_Key_Configuration, which contains the same information as "hkc" in JWK above. The CDDL grammar describing the HPKE_Key_Configuration structure is:
 
 ~~~
 HPKE_Key_Configuration = [
