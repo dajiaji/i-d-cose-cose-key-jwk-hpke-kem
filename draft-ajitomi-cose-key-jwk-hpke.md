@@ -181,7 +181,7 @@ TODO
     "kid": "01",
     "alg": "HPKE-v1-Base",
     "hkc": {
-        "kem": 0x020,
+        "kem": 0x021,
         "kdfs": [0x001, 0x002, 0x003],
         "kems": [0x001, 0x002],
     },
@@ -215,7 +215,7 @@ TODO
     2:'01',
     3:-1(T.B.D),   // HPKE-v1-Base
     6(T.B.D): [    // hkc (HPKE Key Configuration)
-        0x0020,                    // KEM id
+        0x0021,                    // KEM id
         [0x0001, 0x0002, 0x0003],  // supported KDF ids
         [0x0001, 0x0002]           // supported AEAD ids
     ],
