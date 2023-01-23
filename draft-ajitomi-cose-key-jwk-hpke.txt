@@ -186,7 +186,7 @@ Table of Contents
    follows:
 
    *  hkc (HPKE Key Configuration): The parameter MUST contain an array
-      structure named HPKE_Key_COnfiguration, which contains the same
+      structure named HPKE_Key_Configuration, which contains the same
       information as "hkc" in JWK above.  The CDDL grammar describing
       the HPKE_Key_Configuration structure is:
 
