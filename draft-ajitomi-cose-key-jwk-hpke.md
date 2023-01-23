@@ -40,9 +40,9 @@ This document defines an additional key parameter and a new key type for CBOR Ob
 
 Standardized by the Internet Research Task Force (IRTF), HPKE has already been adopted in several communication protocol specifications such as Encrypted Client Hello (ECH), Oblivious DNS over HTTP (ODoH) and Oblivious HTTP (OHTTP). The HPKE itself is communication protocol independent and can be widely used as a standard scheme for public key based end-to-end encryption in various applications, not only in communication protocols.
 
-In HPKE, the sender sending a ciphertext needs to know in advance the KEM supported by the recipient and its public key, as well as the HPKE mode, the set of supported KDF and AEAD algorithms. For example, ECH defines this information as a structure called HpkeKeyConfig. The way in which this information is exchanged is out-of-scope of the specification, but it is assumed that it is obtained in advance by the sender, for example via DNS HTTPS RRs.
+In HPKE, the sender sending a ciphertext needs to know in advance the KEM supported by the recipient and its public key, as well as the HPKE mode, the set of supported KDF and AEAD algorithms. For example, ECH defines this information as a structure called HpkeKeyConfig. The way in which this information (HPKE KEM key configuration information) is exchanged is out-of-scope of the specification, but it is assumed that it is obtained in advance by the sender, for example via DNS HTTPS RRs.
 
-This document defines how to represent the HPKE KEM key configuration information corresponding to the ECH HpkeKeyConfig in COSE_Key and JWK. Specifically, this document defines (1) a key parameter for defining the HPKE KEM configuration information in existing key types that can be used for key derivation and (2) a generic key type for HPKE that can also be used to represent a post-quantum KEM to be specified in the future.
+This document defines how to represent the HPKE KEM key configuration information in COSE_Key and JWK. Specifically, this document defines (1) a common key parameter for defining the HPKE KEM configuration information in existing key types that can be used for key derivation and (2) a generic key type for HPKE that can also be used to represent a post-quantum KEM to be specified in the future.
 
 The ability to include HPKE-related information in JWKs, which are widely used as public key representations at the application layer, and their binary representation, COSE_Key, will facilitate the use of HPKE in a wide variety of web applications and communication systems for constrained devices.
 
@@ -181,7 +181,7 @@ TODO
     "kid": "01",
     "alg": "HPKE-v1-Base",
     "hkc": {
-        "kem": 0x020,
+        "kem": 0x021,
         "kdfs": [0x001, 0x002, 0x003],
         "kems": [0x001, 0x002],
     },
@@ -215,7 +215,7 @@ TODO
     2:'01',
     3:-1(T.B.D),   // HPKE-v1-Base
     6(T.B.D): [    // hkc (HPKE Key Configuration)
-        0x0020,                    // KEM id
+        0x0021,                    // KEM id
         [0x0001, 0x0002, 0x0003],  // supported KDF ids
         [0x0001, 0x0002]           // supported AEAD ids
     ],
