@@ -154,6 +154,76 @@ TODO
 
 --- back
 
+# Examples
+
+## JWK for DHKEM(X25519, KDF-SHA-256) Public Key with Key Type "OKP"
+
+~~~
+{
+    "kty": "OKP",
+    "kid": "01",
+    "crv": "X25519",
+    "alg": "HPKE-v1-Base",
+    "hkc": {
+        "kem": 0x020,
+        "kdfs": [0x001, 0x002, 0x003],
+        "kems": [0x001, 0x002],
+    },
+    "x": "y3wJq3uXPHeoCO4FubvTc7VcBuqpvUrSvU6ZMbHDTCI"
+}
+~~~
+
+## JWK for DHKEM(X448, KDF-SHA-512) Private Key with Key Type "HPKE-KEM"
+
+~~~
+{
+    "kty": "HPKE-KEM",
+    "kid": "01",
+    "alg": "HPKE-v1-Base",
+    "hkc": {
+        "kem": 0x020,
+        "kdfs": [0x001, 0x002, 0x003],
+        "kems": [0x001, 0x002],
+    },
+    "pub": "IkLmc0klvEMXYneHMKAB6ePohryAwAPVe2pRSffIDY6NrjeYNWVX5J-fG4NV2OoU77C88A0mvxI",
+    "priv": "rJJRG3nshyCtd9CgXld8aNaB9YXKR0UOi7zj7hApg9YH4XdBO0G8NcAFNz_uPH2GnCZVcSDgV5c"
+}
+~~~
+
+## COSE_Key for DHKEM(X25519, KDF-SHA-256) Public Key with Key Type OKP(1)
+
+~~~
+  {
+    1:1,          // OKP
+    2:'01',
+    3:-1(T.B.D),  // HPKE-v1-Base
+    -1:4,         // X25519
+    6(T.B.D): [   // hkc (HPKE Key Configuration)
+        0x0020,
+        [0x0001, 0x0002, 0x0003],
+        [0x0001, 0x0002]
+    ],
+    -2:h'd75a980182b10ab7d54bfed3c964073a0ee172f3daa62325af021a68f707511a'
+  }
+~~~
+
+## COSE_Key for DHKEM(X448, KDF-SHA-512) Private Key with Key Type HPKE-KEM(T.B.D)
+
+~~~
+  {
+    1:-1(T.B.D.),  // HPKE-KEM
+    2:'01',
+    3:-1(T.B.D),   // HPKE-v1-Base
+    6(T.B.D): [    // hkc (HPKE Key Configuration)
+        0x0020,                    // KEM id
+        [0x0001, 0x0002, 0x0003],  // supported KDF ids
+        [0x0001, 0x0002]           // supported AEAD ids
+    ],
+    -1:h'5fd7449b59b461fd2ce787ec616ad46a1da1342485a70e1f8a0ea75d80e96778edf124769b46c7061bd6783df1e50f6cd1fa1abeafe8256180',
+    -2:h'6c82a562cb808d10d632be89c8513ebf6c929f34ddfa8c9f63c9960ef6e348a3528c8a3fcc2f044e39a3fc5b94492f8f032e7549a20098f95b'
+  }
+~~~
+
 # Acknowledgments
 {:numbered="false"}
 
