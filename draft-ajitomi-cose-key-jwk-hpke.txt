@@ -71,12 +71,16 @@ Table of Contents
 
    1.  Introduction
    2.  Conventions and Definitions
-   3.  Common Key Parameter for HPKE KEM
+   3.  Common Key Parameter for HPKE Key Configuration
      3.1.  JWK Parameter
+       3.1.1.  "hkc" (HPKE Key Configuration) Parameter
+       3.1.2.  Restrictions on the Use of Existing Key Parameters
      3.2.  COSE Key Common Parameter
+       3.2.1.  hkc (HPKE Key Configuration) Parameter
+       3.2.2.  Restrictions on the Use of Existing Key Parameters
    4.  Generic Key Type for HPKE KEM
-     4.1.  Key Type "HPKE-KEM" for JWK
-     4.2.  Key Type HPKE-KEM for COSE_Key
+     4.1.  Key Type for JWK
+     4.2.  Key Type for COSE_Key
    5.  Security Considerations
    6.  IANA Considerations
    7.  Normative References
@@ -136,34 +140,38 @@ Table of Contents
    BCP 14 [RFC2119] [RFC8174] when, and only when, they appear in all
    capitals, as shown here.
 
-3.  Common Key Parameter for HPKE KEM
+3.  Common Key Parameter for HPKE Key Configuration
 
-   The KEM key configuration information is defined as a common key
+   The HPKE key configuration information is defined as a common key
    parameter of JWK and COSE_Key.  The parameter can be specified in the
    key that can be used for key derivation.  In addition, the handling
-   of existing common key parameters is also defined.
+   of existing key parameters is also defined.
 
 3.1.  JWK Parameter
 
-   The KEM key configuration parameter for JWK is defined as follows:
+3.1.1.  "hkc" (HPKE Key Configuration) Parameter
 
-   *  "hkc" (HPKE Key Configuration): The parameter MUST contain the
-      object consisting of the following three attributes.  A JWK used
-      for HPKE KEM MUST have this parameter.
+   The "hkc" (KPKE key configuration) parameter identifies the KEM for
+   the recipient key and the set of KDF and AEAD algorithms supported by
+   the recipient.  It MUST contain the object consisting of the
+   following three attributes.  A JWK used for HPKE KEM MUST have this
+   parameter.
 
-      -  "kem": The HPKE KEM identifier, which is a two-byte value
-         registered in the IANA HPKE registry.
+   *  "kem": The HPKE KEM identifier, which is a two-byte value
+      registered in the IANA HPKE registry.
 
-      -  "kdfs": The array of the HPKE KDF identifiers supported by the
-         recipient.  The KDF identifier is also a two-byte value
-         registered in the IANA HPKE registry.
+   *  "kdfs": The array of the HPKE KDF identifiers supported by the
+      recipient.  The KDF identifier is also a two-byte value registered
+      in the IANA HPKE registry.
 
-      -  "aeads": The array of the HPKE AEAD identifiers supported by
-         the recipient.  The AEAD identifier is also a two-byte value
-         registered in the IANA HPKE registry.
+   *  "aeads": The array of the HPKE AEAD identifiers supported by the
+      recipient.  The AEAD identifier is also a two-byte value
+      registered in the IANA HPKE registry.
+
+3.1.2.  Restrictions on the Use of Existing Key Parameters
 
    The restrictions on the use of existing common key parameters in a
-   JWK for the HPKE KEM are as follows:
+   JWK for HPKE KEM are as follows:
 
    *  "alg": The parameter MUST be one of the following values if
       specified.  If omitted, it MUST be treated as "HPKE-v1-Base".
@@ -186,7 +194,9 @@ Table of Contents
 
 3.2.  COSE Key Common Parameter
 
-   The KEM key configuration parameter for COSE_Key is defined as
+3.2.1.  hkc (HPKE Key Configuration) Parameter
+
+   The HPKE key configuration parameter for COSE_Key is defined as
    follows:
 
    *  hkc (HPKE Key Configuration): The parameter MUST contain an array
@@ -217,6 +227,8 @@ Table of Contents
       |         |                |             |                      |
       +---------+----------------+-------------+----------------------+
 
+3.2.2.  Restrictions on the Use of Existing Key Parameters
+
    The restrictions on the use of existing common key parameters in a
    COSE_Key for the HPKE KEM are as follows:
 
@@ -244,7 +256,7 @@ Table of Contents
    represented by existing key types can use the generic key type
    defined here.
 
-4.1.  Key Type "HPKE-KEM" for JWK
+4.1.  Key Type for JWK
 
    A new generic key type (kty) value "HPKE-KEM" is defined to represent
    the private and public key used for the HPKE KEM.  A key with this
@@ -262,7 +274,7 @@ Table of Contents
       contains the private key encoded using the base64url [RFC4648]
       encoding.
 
-4.2.  Key Type HPKE-KEM for COSE_Key
+4.2.  Key Type for COSE_Key
 
    A new generic kty(1) value HPKE-KEM(T.B.D.) is defined to represent
    the private and public key used for the HPKE KEM.  A key with this
