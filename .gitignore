@@ -17,7 +17,7 @@
 /versioned/
 Gemfile.lock
 archive.json
-draft-ajitomi-jose-jwk-hpke-kem.xml
+draft-ajitomi-cose-cose-key-jwk-hpke-kem.xml
 package-lock.json
 report.xml
 !requirements.txt
