@@ -23,7 +23,7 @@ author:
  -
     fullname: Daisuke Ajitomi
     organization: Independent
-    email: "ajitomi@gmail.com"
+    email: "dajiaji@gmail.com"
 
 normative:
 
