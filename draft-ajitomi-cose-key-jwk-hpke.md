@@ -38,11 +38,16 @@ This document defines an additional key parameter and a new key type for CBOR Ob
 
 # Introduction
 
-Standardized by the Internet Research Task Force (IRTF), Hybrid Public Key Encryption (HPKE) has already been adopted in several communication protocol specifications such as TLS Encrypted Client Hello (ECH), Oblivious DNS over HTTPS (ODoH) and Oblivious HTTP (OHTTP). HPKE itself is communication protocol independent and can be widely used as a standard scheme for public key based end-to-end encryption in various applications, not only in communication protocols.
+Standardized by the Internet Research Task Force (IRTF), Hybrid Public Key Encryption (HPKE) has already been adopted in several communication protocol specifications such as TLS Encrypted Client Hello (ECH), Oblivious DNS over HTTPS (ODoH) and Oblivious HTTP (OHTTP).
+HPKE itself is communication protocol independent and can be widely used as a standard scheme for public key based end-to-end encryption in various applications, not only in communication protocols.
 
-In HPKE, the sender of a ciphertext needs to know in advance not only the recipient public key, but also the HPKE mode, the KEM associated with the key, and the set of supported KDF and AEAD algorithms. The data structure of this information (hereafter referred to as HPKE key configuration information) is defined in each communication protocol specification that uses HPKE. For example, the ECH defines it as a structure called HpkeKeyConfig. When using HPKE in an application, it is necessary to define the data structure corresponding to the HpkeKeyConfig and how the information is transferred from the recipient to the sender.
+In HPKE, the sender of a ciphertext needs to know in advance not only the recipient public key, but also the HPKE mode, the KEM associated with the key, and the set of supported KDF and AEAD algorithms.
+The data structure of this information (hereafter referred to as HPKE key configuration information) is defined in each communication protocol specification that uses HPKE.
+For example, the ECH defines it as a structure called HpkeKeyConfig.
+When using HPKE in an application, it is necessary to define the data structure corresponding to the HpkeKeyConfig and how the information is transferred from the recipient to the sender.
 
-This document defines how to represent the HPKE KEM key configuration information in COSE_Key and JWK. Specifically, this document defines (1) a common key parameter for defining the HPKE KEM configuration information in existing key types that can be used for key derivation and (2) a generic key type for HPKE that can also be used to represent a post-quantum KEM to be specified in the future.
+This document defines how to represent the HPKE KEM key configuration information in COSE_Key and JWK.
+Specifically, this document defines (1) a common key parameter for defining the HPKE KEM configuration information in existing key types that can be used for key derivation and (2) a generic key type for HPKE that can also be used to represent a post-quantum KEM to be specified in the future.
 
 The ability to include HPKE-related information in JWK, which is widely used not only as the public key representation but also as the key publication method (via the JWK Set endpoint) at the application layer, and its binary representation, COSE_Key, will facilitate the use of HPKE in a wide variety of web applications and communication systems for constrained devices.
 
@@ -50,20 +55,26 @@ The ability to include HPKE-related information in JWK, which is widely used not
 
 {::boilerplate bcp14-tagged}
 
-# Common Key Parameter for HPKE KEM
+# Common Key Parameter for HPKE Key Configuration
 
-The KEM key configuration information is defined as a common key parameter of JWK and COSE_Key. The parameter can be specified in the key that can be used for key derivation. In addition, the handling of existing common key parameters is also defined.
+The HPKE key configuration information is defined as a common key parameter of JWK and COSE_Key.
+The parameter can be specified in the key that can be used for key derivation. In addition, the handling of existing key parameters is also defined.
 
 ## JWK Parameter
 
-The KEM key configuration parameter for JWK is defined as follows:
+### "hkc" (HPKE Key Configuration) Parameter
 
-- "hkc" (HPKE Key Configuration): The parameter MUST contain the object consisting of the following three attributes. A JWK used for HPKE KEM MUST have this parameter.
-  - "kem": The HPKE KEM identifier, which is a two-byte value registered in the IANA HPKE registry.
-  - "kdfs": The array of the HPKE KDF identifiers supported by the recipient. The KDF identifier is also a two-byte value registered in the IANA HPKE registry.
-  - "aeads": The array of the HPKE AEAD identifiers supported by the recipient. The AEAD identifier is also a two-byte value registered in the IANA HPKE registry.
+The "hkc" (KPKE key configuration) parameter identifies the KEM for the recipient key and the set of KDF and AEAD algorithms supported by the recipient.
+It MUST contain the object consisting of the following three attributes.
+A JWK used for HPKE KEM MUST have this parameter.
 
-The restrictions on the use of existing common key parameters in a JWK for the HPKE KEM are as follows:
+- "kem": The HPKE KEM identifier, which is a two-byte value registered in the IANA HPKE registry.
+- "kdfs": The array of the HPKE KDF identifiers supported by the recipient. The KDF identifier is also a two-byte value registered in the IANA HPKE registry.
+- "aeads": The array of the HPKE AEAD identifiers supported by the recipient. The AEAD identifier is also a two-byte value registered in the IANA HPKE registry.
+
+### Restrictions on the Use of Existing Key Parameters
+
+The restrictions on the use of existing common key parameters in a JWK for HPKE KEM are as follows:
 
 - "alg": The parameter MUST be one of the following values if specified. If omitted, it MUST be treated as "HPKE-v1-Base".
     - "HPKE-v1-Base"
@@ -76,7 +87,9 @@ The restrictions on the use of existing common key parameters in a JWK for the H
 
 ## COSE Key Common Parameter
 
-The KEM key configuration parameter for COSE_Key is defined as follows:
+### hkc (HPKE Key Configuration) Parameter
+
+The HPKE key configuration parameter for COSE_Key is defined as follows:
 
 - hkc (HPKE Key Configuration): The parameter MUST contain an array structure named HPKE_Key_Configuration, which contains the same information as "hkc" in JWK above. The CDDL grammar describing the HPKE_Key_Configuration structure is:
 
@@ -107,6 +120,8 @@ HPKE_Key_Configuration = [
    +---------+----------------+-------------+----------------------+
 ~~~
 
+### Restrictions on the Use of Existing Key Parameters
+
 The restrictions on the use of existing common key parameters in a COSE_Key for the HPKE KEM are as follows:
 
 - alg(3): The parameter MUST be one of the following values if specified. If omitted, it MUST be treated as HPKE-v1-Base(T.B.D.).
@@ -122,7 +137,7 @@ The restrictions on the use of existing common key parameters in a COSE_Key for 
 A generic key type for the HPKE KEM keys including a post-quantum KEM defined in the future is defined.
 Even KEM keys that can be represented by existing key types can use the generic key type defined here.
 
-## Key Type "HPKE-KEM" for JWK
+## Key Type for JWK
 
 A new generic key type (kty) value "HPKE-KEM" is defined to represent the private and public key used for the HPKE KEM.
 A key with this kty has the following parameters:
@@ -132,7 +147,7 @@ A key with this kty has the following parameters:
 - The parameter "pub" MUST be present and contains the public key encoded using the base64url [RFC4648] encoding.
 - The parameter "priv" MUST be present if the key is private key and contains the private key encoded using the base64url [RFC4648] encoding.
 
-## Key Type HPKE-KEM for COSE_Key
+## Key Type for COSE_Key
 
 A new generic kty(1) value HPKE-KEM(T.B.D.) is defined to represent the private and public key used for the HPKE KEM.
 A key with this kty has the following parameters:
