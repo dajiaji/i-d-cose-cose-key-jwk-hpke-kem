@@ -38,11 +38,11 @@ This document defines an additional key parameter and a new key type for CBOR Ob
 
 # Introduction
 
-Standardized by the Internet Research Task Force (IRTF), HPKE has already been adopted in several communication protocol specifications such as Encrypted Client Hello (ECH), Oblivious DNS over HTTP (ODoH) and Oblivious HTTP (OHTTP). The HPKE itself is communication protocol independent and can be widely used as a standard scheme for public key based end-to-end encryption in various applications, not only in communication protocols.
+Standardized by the Internet Research Task Force (IRTF), Hybrid Public Key Encryption (HPKE) has already been adopted in several communication protocol specifications such as TLS Encrypted Client Hello (ECH), Oblivious DNS over HTTPS (ODoH) and Oblivious HTTP (OHTTP). HPKE itself is communication protocol independent and can be widely used as a standard scheme for public key based end-to-end encryption in various applications, not only in communication protocols.
 
-In HPKE, the sender sending a ciphertext needs to know in advance the KEM supported by the recipient and its public key, as well as the HPKE mode, the set of supported KDF and AEAD algorithms. For example, ECH defines this information as a structure called HpkeKeyConfig. The way in which this information (HPKE KEM key configuration information) is exchanged is out-of-scope of the specification, but it is assumed that it is obtained in advance by the sender, for example via DNS HTTPS RRs.
+In HPKE, the sender sending a ciphertext needs to know in advance not only the recipient's public key but also the HPKE mode, the KEM bound to the key and the set of supported KDF and AEAD algorithms. The data structure of these information (hereafter, HPKE key configuration information) is defined in each communication protocol specifications which use HPKE. For example, the ECH defines it as a structure called HpkeKeyConfig. When using HPKE in an application, it is necessary to determine the data structure coressponding to the HpkeKeyConfigt and how to share the information from the recipient to the sender. A standardized HPKE key config data structure and the sharing method for applications would be helpful.
 
-This document defines how to represent the HPKE KEM key configuration information in COSE_Key and JWK. Specifically, this document defines (1) a common key parameter for defining the HPKE KEM configuration information in existing key types that can be used for key derivation and (2) a generic key type for HPKE that can also be used to represent a post-quantum KEM to be specified in the future.
+This document defines the way to represent the HPKE KEM key configuration information in COSE_Key and JWK. Specifically, this document defines (1) a common key parameter for defining the HPKE KEM configuration information in existing key types that can be used for key derivation and (2) a generic key type for HPKE that can also be used to represent a post-quantum KEM to be specified in the future.
 
 The ability to include HPKE-related information in JWKs, which are widely used as public key representations at the application layer, and their binary representation, COSE_Key, will facilitate the use of HPKE in a wide variety of web applications and communication systems for constrained devices.
 
@@ -167,7 +167,7 @@ TODO
     "hkc": {
         "kem": 0x020,
         "kdfs": [0x001, 0x002, 0x003],
-        "kems": [0x001, 0x002],
+        "kems": [0x001, 0x002]
     },
     "x": "y3wJq3uXPHeoCO4FubvTc7VcBuqpvUrSvU6ZMbHDTCI"
 }
@@ -183,7 +183,7 @@ TODO
     "hkc": {
         "kem": 0x021,
         "kdfs": [0x001, 0x002, 0x003],
-        "kems": [0x001, 0x002],
+        "kems": [0x001, 0x002]
     },
     "pub": "IkLmc0klvEMXYneHMKAB6ePohryAwAPVe2pRSffIDY6NrjeYNWVX5J-fG4NV2OoU77C88A0mvxI",
     "priv": "rJJRG3nshyCtd9CgXld8aNaB9YXKR0UOi7zj7hApg9YH4XdBO0G8NcAFNz_uPH2GnCZVcSDgV5c"
