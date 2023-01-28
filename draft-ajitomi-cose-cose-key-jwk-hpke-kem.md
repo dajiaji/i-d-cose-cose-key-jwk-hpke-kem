@@ -3,8 +3,8 @@ title: "COSE Key and JSON Web Key Representation for Key Encapsulation Mechanism
 abbrev: "COSE Key and JWK Representation for HPKE KEM"
 category: std
 
-docname: draft-ajitomi-cose-key-jwk-hpke-latest
-submissiontype: IETF  # also: "independent", "IAB", or "IRTF"
+docname: draft-ajitomi-cose-cose-key-jwk-hpke-kem-latest
+submissiontype: IETF
 number:
 date:
 consensus: true
@@ -17,7 +17,7 @@ venue:
   mail: "cose@ietf.org"
   arch: "https://mailarchive.ietf.org/arch/browse/cose/"
   github: "dajiaji/i-d-cose-key-jwk-hpke"
-  latest: "https://dajiaji.github.io/i-d-cose-key-jwk-hpke/draft-ajitomi-cose-key-jwk-hpke.html"
+  latest: "https://dajiaji.github.io/i-d-cose-key-jwk-hpke/draft-ajitomi-cose-cose-key-jwk-hpke-kem.html"
 
 author:
  -
