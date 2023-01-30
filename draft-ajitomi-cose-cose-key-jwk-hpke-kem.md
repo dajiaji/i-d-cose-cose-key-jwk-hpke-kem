@@ -16,8 +16,8 @@ venue:
   type: "Working Group"
   mail: "cose@ietf.org"
   arch: "https://mailarchive.ietf.org/arch/browse/cose/"
-  github: "dajiaji/i-d-cose-key-jwk-hpke"
-  latest: "https://dajiaji.github.io/i-d-cose-key-jwk-hpke/draft-ajitomi-cose-cose-key-jwk-hpke-kem.html"
+  github: "dajiaji/i-d-cose-cose-key-jwk-hpke-kem"
+  latest: "https://dajiaji.github.io/i-d-cose-cose-key-jwk-hpke-kem/draft-ajitomi-cose-cose-key-jwk-hpke-kem.html"
 
 author:
  -
