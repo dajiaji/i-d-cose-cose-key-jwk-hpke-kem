@@ -4,13 +4,13 @@
 
 CBOR Object Signing and Encryption                            D. Ajitomi
 Internet-Draft                                               Independent
-Intended status: Standards Track                         28 January 2023
-Expires: 1 August 2023
+Intended status: Standards Track                         30 January 2023
+Expires: 3 August 2023
 
 
 COSE Key and JSON Web Key Representation for Key Encapsulation Mechanism
               (KEM) of Hybrid Public Key Encryption (HPKE)
-                 draft-ajitomi-cose-key-jwk-hpke-latest
+            draft-ajitomi-cose-cose-key-jwk-hpke-kem-latest
 
 Abstract
 
@@ -24,9 +24,10 @@ About This Document
    This note is to be removed before publishing as an RFC.
 
    The latest revision of this draft can be found at
-   https://dajiaji.github.io/i-d-cose-key-jwk-hpke/draft-ajitomi-cose-
-   key-jwk-hpke.html.  Status information for this document may be found
-   at https://datatracker.ietf.org/doc/draft-ajitomi-cose-key-jwk-hpke/.
+   https://dajiaji.github.io/i-d-cose-cose-key-jwk-hpke-kem/draft-
+   ajitomi-cose-cose-key-jwk-hpke-kem.html.  Status information for this
+   document may be found at https://datatracker.ietf.org/doc/draft-
+   ajitomi-cose-cose-key-jwk-hpke-kem/.
 
    Discussion of this document takes place on the CBOR Object Signing
    and Encryption Working Group mailing list (mailto:cose@ietf.org),
@@ -34,7 +35,7 @@ About This Document
    Subscribe at https://www.ietf.org/mailman/listinfo/cose/.
 
    Source for this draft and an issue tracker can be found at
-   https://github.com/dajiaji/i-d-cose-key-jwk-hpke.
+   https://github.com/dajiaji/i-d-cose-cose-key-jwk-hpke-kem.
 
 Status of This Memo
 
@@ -51,7 +52,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 1 August 2023.
+   This Internet-Draft will expire on 3 August 2023.
 
 Copyright Notice
 
@@ -71,12 +72,16 @@ Table of Contents
 
    1.  Introduction
    2.  Conventions and Definitions
-   3.  Common Key Parameter for HPKE KEM
+   3.  Common Key Parameter for HPKE Key Configuration
      3.1.  JWK Parameter
+       3.1.1.  "hkc" (HPKE Key Configuration) Parameter
+       3.1.2.  Restrictions on the Use of Existing Key Parameters
      3.2.  COSE Key Common Parameter
+       3.2.1.  hkc (HPKE Key Configuration) Parameter
+       3.2.2.  Restrictions on the Use of Existing Key Parameters
    4.  Generic Key Type for HPKE KEM
-     4.1.  Key Type "HPKE-KEM" for JWK
-     4.2.  Key Type HPKE-KEM for COSE_Key
+     4.1.  Key Type for JWK
+     4.2.  Key Type for COSE_Key
    5.  Security Considerations
    6.  IANA Considerations
    7.  Normative References
@@ -103,30 +108,30 @@ Table of Contents
    encryption in various applications, not only in communication
    protocols.
 
-   In HPKE, the sender sending a ciphertext needs to know in advance not
-   only the recipient's public key but also the HPKE mode, the KEM bound
-   to the key and the set of supported KDF and AEAD algorithms.  The
-   data structure of these information (hereafter, HPKE key
+   In HPKE, the sender of a ciphertext needs to know in advance not only
+   the recipient public key, but also the HPKE mode, the KEM associated
+   with the key, and the set of supported KDF and AEAD algorithms.  The
+   data structure of this information (hereafter referred to as HPKE key
    configuration information) is defined in each communication protocol
-   specifications which use HPKE.  For example, the ECH defines it as a
+   specification that uses HPKE.  For example, the ECH defines it as a
    structure called HpkeKeyConfig.  When using HPKE in an application,
-   it is necessary to determine the data structure coressponding to the
-   HpkeKeyConfigt and how to share the information from the recipient to
-   the sender.  A standardized HPKE key config data structure and the
-   sharing method for applications would be helpful.
+   it is necessary to define the data structure corresponding to the
+   HpkeKeyConfig and how the information is transferred from the
+   recipient to the sender.
 
-   This document defines the way to represent the HPKE KEM key
-   configuration information in COSE_Key and JWK.  Specifically, this
-   document defines (1) a common key parameter for defining the HPKE KEM
-   configuration information in existing key types that can be used for
-   key derivation and (2) a generic key type for HPKE that can also be
-   used to represent a post-quantum KEM to be specified in the future.
+   This document defines how to represent the HPKE KEM key configuration
+   information in COSE_Key and JWK.  Specifically, this document defines
+   (1) a common key parameter for defining the HPKE KEM configuration
+   information in existing key types that can be used for key derivation
+   and (2) a generic key type for HPKE that can also be used to
+   represent a post-quantum KEM to be specified in the future.
 
-   The ability to include HPKE-related information in JWKs, which are
-   widely used as public key representations at the application layer,
-   and their binary representation, COSE_Key, will facilitate the use of
-   HPKE in a wide variety of web applications and communication systems
-   for constrained devices.
+   The ability to include HPKE-related information in JWK, which is
+   widely used not only as the public key representation but also as the
+   key publication method (via the JWK Set endpoint) at the application
+   layer, and its binary representation, COSE_Key, will facilitate the
+   use of HPKE in a wide variety of web applications and communication
+   systems for constrained devices.
 
 2.  Conventions and Definitions
 
@@ -136,34 +141,38 @@ Table of Contents
    BCP 14 [RFC2119] [RFC8174] when, and only when, they appear in all
    capitals, as shown here.
 
-3.  Common Key Parameter for HPKE KEM
+3.  Common Key Parameter for HPKE Key Configuration
 
-   The KEM key configuration information is defined as a common key
+   The HPKE key configuration information is defined as a common key
    parameter of JWK and COSE_Key.  The parameter can be specified in the
    key that can be used for key derivation.  In addition, the handling
-   of existing common key parameters is also defined.
+   of existing key parameters is also defined.
 
 3.1.  JWK Parameter
 
-   The KEM key configuration parameter for JWK is defined as follows:
+3.1.1.  "hkc" (HPKE Key Configuration) Parameter
 
-   *  "hkc" (HPKE Key Configuration): The parameter MUST contain the
-      object consisting of the following three attributes.  A JWK used
-      for HPKE KEM MUST have this parameter.
+   The "hkc" (KPKE key configuration) parameter identifies the KEM for
+   the recipient key and the set of KDF and AEAD algorithms supported by
+   the recipient.  It MUST contain the object consisting of the
+   following three attributes.  A JWK used for HPKE KEM MUST have this
+   parameter.
 
-      -  "kem": The HPKE KEM identifier, which is a two-byte value
-         registered in the IANA HPKE registry.
+   *  "kem": The HPKE KEM identifier, which is a two-byte value
+      registered in the IANA HPKE registry.
 
-      -  "kdfs": The array of the HPKE KDF identifiers supported by the
-         recipient.  The KDF identifier is also a two-byte value
-         registered in the IANA HPKE registry.
+   *  "kdfs": The array of the HPKE KDF identifiers supported by the
+      recipient.  The KDF identifier is also a two-byte value registered
+      in the IANA HPKE registry.
 
-      -  "aeads": The array of the HPKE AEAD identifiers supported by
-         the recipient.  The AEAD identifier is also a two-byte value
-         registered in the IANA HPKE registry.
+   *  "aeads": The array of the HPKE AEAD identifiers supported by the
+      recipient.  The AEAD identifier is also a two-byte value
+      registered in the IANA HPKE registry.
+
+3.1.2.  Restrictions on the Use of Existing Key Parameters
 
    The restrictions on the use of existing common key parameters in a
-   JWK for the HPKE KEM are as follows:
+   JWK for HPKE KEM are as follows:
 
    *  "alg": The parameter MUST be one of the following values if
       specified.  If omitted, it MUST be treated as "HPKE-v1-Base".
@@ -186,7 +195,9 @@ Table of Contents
 
 3.2.  COSE Key Common Parameter
 
-   The KEM key configuration parameter for COSE_Key is defined as
+3.2.1.  hkc (HPKE Key Configuration) Parameter
+
+   The HPKE key configuration parameter for COSE_Key is defined as
    follows:
 
    *  hkc (HPKE Key Configuration): The parameter MUST contain an array
@@ -217,6 +228,8 @@ Table of Contents
       |         |                |             |                      |
       +---------+----------------+-------------+----------------------+
 
+3.2.2.  Restrictions on the Use of Existing Key Parameters
+
    The restrictions on the use of existing common key parameters in a
    COSE_Key for the HPKE KEM are as follows:
 
@@ -244,7 +257,7 @@ Table of Contents
    represented by existing key types can use the generic key type
    defined here.
 
-4.1.  Key Type "HPKE-KEM" for JWK
+4.1.  Key Type for JWK
 
    A new generic key type (kty) value "HPKE-KEM" is defined to represent
    the private and public key used for the HPKE KEM.  A key with this
@@ -262,7 +275,7 @@ Table of Contents
       contains the private key encoded using the base64url [RFC4648]
       encoding.
 
-4.2.  Key Type HPKE-KEM for COSE_Key
+4.2.  Key Type for COSE_Key
 
    A new generic kty(1) value HPKE-KEM(T.B.D.) is defined to represent
    the private and public key used for the HPKE KEM.  A key with this
@@ -311,7 +324,7 @@ A.1.  JWK for DHKEM(X25519, KDF-SHA-256) Public Key with Key Type "OKP"
        "hkc": {
            "kem": 0x020,
            "kdfs": [0x001, 0x002, 0x003],
-           "kems": [0x001, 0x002]
+           "aeads": [0x001, 0x002]
        },
        "x": "y3wJq3uXPHeoCO4FubvTc7VcBuqpvUrSvU6ZMbHDTCI"
    }
@@ -326,7 +339,7 @@ A.2.  JWK for DHKEM(X448, KDF-SHA-512) Private Key with Key Type "HPKE-
     "hkc": {
         "kem": 0x021,
         "kdfs": [0x001, 0x002, 0x003],
-        "kems": [0x001, 0x002]
+        "aeads": [0x001, 0x002]
     },
     "pub": "IkLmc0klvEMXYneHMKAB6ePohryAwAPVe2pRSffIDY6NrjeYNWVX5J-fG4NV2OoU77C88A0mvxI",
     "priv": "rJJRG3nshyCtd9CgXld8aNaB9YXKR0UOi7zj7hApg9YH4XdBO0G8NcAFNz_uPH2GnCZVcSDgV5c"
@@ -372,4 +385,4 @@ Author's Address
 
    Daisuke Ajitomi
    Independent
-   Email: ajitomi@gmail.com
+   Email: dajiaji@gmail.com

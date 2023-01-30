@@ -10,7 +10,7 @@
        This document defines an additional key parameter and a new key type for CBOR Object Signing and Encryption (COSE) Key and JSON Web Key (JWK) to represent a Key Encapsulated Mechanism (KEM) key configuration of Hybrid Public Key Encryption (HPKE). 
     " name="description">
 <meta content="xml2rfc 3.15.3" name="generator">
-<meta content="draft-ajitomi-cose-key-jwk-hpke-latest" name="ietf.draft">
+<meta content="draft-ajitomi-cose-cose-key-jwk-hpke-kem-latest" name="ietf.draft">
 <!-- Generator version information:
   xml2rfc 3.15.3
     Python 3.10.9
@@ -29,7 +29,7 @@
     six 1.16.0
     wcwidth 0.2.6
 -->
-<link href="draft-ajitomi-cose-key-jwk-hpke.xml" rel="alternate" type="application/rfc+xml">
+<link href="draft-ajitomi-cose-cose-key-jwk-hpke-kem.xml" rel="alternate" type="application/rfc+xml">
 <link href="#copyright" rel="license">
 <style type="text/css">@font-face {
   font-family: 'Lora';
@@ -1040,7 +1040,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Ajitomi</td>
-<td class="center">Expires 1 August 2023</td>
+<td class="center">Expires 3 August 2023</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1050,15 +1050,15 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dt class="label-workgroup">Workgroup:</dt>
 <dd class="workgroup">CBOR Object Signing and Encryption</dd>
 <dt class="label-internet-draft">Internet-Draft:</dt>
-<dd class="internet-draft">draft-ajitomi-cose-key-jwk-hpke-latest</dd>
+<dd class="internet-draft">draft-ajitomi-cose-cose-key-jwk-hpke-kem-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2023-01-28" class="published">28 January 2023</time>
+<time datetime="2023-01-30" class="published">30 January 2023</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2023-08-01">1 August 2023</time></dd>
+<dd class="expires"><time datetime="2023-08-03">3 August 2023</time></dd>
 <dt class="label-authors">Author:</dt>
 <dd class="authors">
 <div class="author">
@@ -1079,15 +1079,15 @@ svg :is([fill="white"], [fill^="#fff"]) {
       </h2>
 <p id="section-note.1-1">This note is to be removed before publishing as an RFC.<a href="#section-note.1-1" class="pilcrow">¶</a></p>
 <p id="section-note.1-2">
-        The latest revision of this draft can be found at <span><a href="https://dajiaji.github.io/i-d-cose-key-jwk-hpke/draft-ajitomi-cose-key-jwk-hpke.html">https://dajiaji.github.io/i-d-cose-key-jwk-hpke/draft-ajitomi-cose-key-jwk-hpke.html</a></span>.
-        Status information for this document may be found at <span><a href="https://datatracker.ietf.org/doc/draft-ajitomi-cose-key-jwk-hpke/">https://datatracker.ietf.org/doc/draft-ajitomi-cose-key-jwk-hpke/</a></span>.<a href="#section-note.1-2" class="pilcrow">¶</a></p>
+        The latest revision of this draft can be found at <span><a href="https://dajiaji.github.io/i-d-cose-cose-key-jwk-hpke-kem/draft-ajitomi-cose-cose-key-jwk-hpke-kem.html">https://dajiaji.github.io/i-d-cose-cose-key-jwk-hpke-kem/draft-ajitomi-cose-cose-key-jwk-hpke-kem.html</a></span>.
+        Status information for this document may be found at <span><a href="https://datatracker.ietf.org/doc/draft-ajitomi-cose-cose-key-jwk-hpke-kem/">https://datatracker.ietf.org/doc/draft-ajitomi-cose-cose-key-jwk-hpke-kem/</a></span>.<a href="#section-note.1-2" class="pilcrow">¶</a></p>
 <p id="section-note.1-3">
         Discussion of this document takes place on the
         CBOR Object Signing and Encryption Working Group mailing list (<span><a href="mailto:cose@ietf.org">mailto:cose@ietf.org</a></span>),
         which is archived at <span><a href="https://mailarchive.ietf.org/arch/browse/cose/">https://mailarchive.ietf.org/arch/browse/cose/</a></span>.
         Subscribe at <span><a href="https://www.ietf.org/mailman/listinfo/cose/">https://www.ietf.org/mailman/listinfo/cose/</a></span>.<a href="#section-note.1-3" class="pilcrow">¶</a></p>
 <p id="section-note.1-4">Source for this draft and an issue tracker can be found at
-        <span><a href="https://github.com/dajiaji/i-d-cose-key-jwk-hpke">https://github.com/dajiaji/i-d-cose-key-jwk-hpke</a></span>.<a href="#section-note.1-4" class="pilcrow">¶</a></p>
+        <span><a href="https://github.com/dajiaji/i-d-cose-cose-key-jwk-hpke-kem">https://github.com/dajiaji/i-d-cose-cose-key-jwk-hpke-kem</a></span>.<a href="#section-note.1-4" class="pilcrow">¶</a></p>
 </section>
 <div id="status-of-memo">
 <section id="section-boilerplate.1">
@@ -1108,7 +1108,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 1 August 2023.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 3 August 2023.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1144,13 +1144,29 @@ svg :is([fill="white"], [fill^="#fff"]) {
             <p id="section-toc.1-1.2.1" class="keepWithNext"><a href="#section-2" class="auto internal xref">2</a>.  <a href="#name-conventions-and-definitions" class="internal xref">Conventions and Definitions</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3">
-            <p id="section-toc.1-1.3.1"><a href="#section-3" class="auto internal xref">3</a>.  <a href="#name-common-key-parameter-for-hp" class="internal xref">Common Key Parameter for HPKE KEM</a></p>
+            <p id="section-toc.1-1.3.1"><a href="#section-3" class="auto internal xref">3</a>.  <a href="#name-common-key-parameter-for-hp" class="internal xref">Common Key Parameter for HPKE Key Configuration</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.1">
-                <p id="section-toc.1-1.3.2.1.1" class="keepWithNext"><a href="#section-3.1" class="auto internal xref">3.1</a>.  <a href="#name-jwk-parameter" class="internal xref">JWK Parameter</a></p>
+                <p id="section-toc.1-1.3.2.1.1"><a href="#section-3.1" class="auto internal xref">3.1</a>.  <a href="#name-jwk-parameter" class="internal xref">JWK Parameter</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.1.2.1">
+                    <p id="section-toc.1-1.3.2.1.2.1.1" class="keepWithNext"><a href="#section-3.1.1" class="auto internal xref">3.1.1</a>.  <a href="#name-hkc-hpke-key-configuration-" class="internal xref">"hkc" (HPKE Key Configuration) Parameter</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.1.2.2">
+                    <p id="section-toc.1-1.3.2.1.2.2.1"><a href="#section-3.1.2" class="auto internal xref">3.1.2</a>.  <a href="#name-restrictions-on-the-use-of-" class="internal xref">Restrictions on the Use of Existing Key Parameters</a></p>
+</li>
+                </ul>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.2">
                 <p id="section-toc.1-1.3.2.2.1"><a href="#section-3.2" class="auto internal xref">3.2</a>.  <a href="#name-cose-key-common-parameter" class="internal xref">COSE Key Common Parameter</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.2.2.1">
+                    <p id="section-toc.1-1.3.2.2.2.1.1"><a href="#section-3.2.1" class="auto internal xref">3.2.1</a>.  <a href="#name-hkc-hpke-key-configuration-p" class="internal xref">hkc (HPKE Key Configuration) Parameter</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.2.2.2">
+                    <p id="section-toc.1-1.3.2.2.2.2.1"><a href="#section-3.2.2" class="auto internal xref">3.2.2</a>.  <a href="#name-restrictions-on-the-use-of-e" class="internal xref">Restrictions on the Use of Existing Key Parameters</a></p>
+</li>
+                </ul>
 </li>
             </ul>
 </li>
@@ -1158,10 +1174,10 @@ svg :is([fill="white"], [fill^="#fff"]) {
             <p id="section-toc.1-1.4.1"><a href="#section-4" class="auto internal xref">4</a>.  <a href="#name-generic-key-type-for-hpke-k" class="internal xref">Generic Key Type for HPKE KEM</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.1">
-                <p id="section-toc.1-1.4.2.1.1"><a href="#section-4.1" class="auto internal xref">4.1</a>.  <a href="#name-key-type-hpke-kem-for-jwk" class="internal xref">Key Type "HPKE-KEM" for JWK</a></p>
+                <p id="section-toc.1-1.4.2.1.1"><a href="#section-4.1" class="auto internal xref">4.1</a>.  <a href="#name-key-type-for-jwk" class="internal xref">Key Type for JWK</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.2">
-                <p id="section-toc.1-1.4.2.2.1"><a href="#section-4.2" class="auto internal xref">4.2</a>.  <a href="#name-key-type-hpke-kem-for-cose_" class="internal xref">Key Type HPKE-KEM for COSE_Key</a></p>
+                <p id="section-toc.1-1.4.2.2.1"><a href="#section-4.2" class="auto internal xref">4.2</a>.  <a href="#name-key-type-for-cose_key" class="internal xref">Key Type for COSE_Key</a></p>
 </li>
             </ul>
 </li>
@@ -1206,10 +1222,15 @@ svg :is([fill="white"], [fill^="#fff"]) {
       <h2 id="name-introduction">
 <a href="#section-1" class="section-number selfRef">1. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
       </h2>
-<p id="section-1-1">Standardized by the Internet Research Task Force (IRTF), Hybrid Public Key Encryption (HPKE) has already been adopted in several communication protocol specifications such as TLS Encrypted Client Hello (ECH), Oblivious DNS over HTTPS (ODoH) and Oblivious HTTP (OHTTP). HPKE itself is communication protocol independent and can be widely used as a standard scheme for public key based end-to-end encryption in various applications, not only in communication protocols.<a href="#section-1-1" class="pilcrow">¶</a></p>
-<p id="section-1-2">In HPKE, the sender sending a ciphertext needs to know in advance not only the recipient's public key but also the HPKE mode, the KEM bound to the key and the set of supported KDF and AEAD algorithms. The data structure of these information (hereafter, HPKE key configuration information) is defined in each communication protocol specifications which use HPKE. For example, the ECH defines it as a structure called HpkeKeyConfig. When using HPKE in an application, it is necessary to determine the data structure coressponding to the HpkeKeyConfigt and how to share the information from the recipient to the sender. A standardized HPKE key config data structure and the sharing method for applications would be helpful.<a href="#section-1-2" class="pilcrow">¶</a></p>
-<p id="section-1-3">This document defines the way to represent the HPKE KEM key configuration information in COSE_Key and JWK. Specifically, this document defines (1) a common key parameter for defining the HPKE KEM configuration information in existing key types that can be used for key derivation and (2) a generic key type for HPKE that can also be used to represent a post-quantum KEM to be specified in the future.<a href="#section-1-3" class="pilcrow">¶</a></p>
-<p id="section-1-4">The ability to include HPKE-related information in JWKs, which are widely used as public key representations at the application layer, and their binary representation, COSE_Key, will facilitate the use of HPKE in a wide variety of web applications and communication systems for constrained devices.<a href="#section-1-4" class="pilcrow">¶</a></p>
+<p id="section-1-1">Standardized by the Internet Research Task Force (IRTF), Hybrid Public Key Encryption (HPKE) has already been adopted in several communication protocol specifications such as TLS Encrypted Client Hello (ECH), Oblivious DNS over HTTPS (ODoH) and Oblivious HTTP (OHTTP).
+HPKE itself is communication protocol independent and can be widely used as a standard scheme for public key based end-to-end encryption in various applications, not only in communication protocols.<a href="#section-1-1" class="pilcrow">¶</a></p>
+<p id="section-1-2">In HPKE, the sender of a ciphertext needs to know in advance not only the recipient public key, but also the HPKE mode, the KEM associated with the key, and the set of supported KDF and AEAD algorithms.
+The data structure of this information (hereafter referred to as HPKE key configuration information) is defined in each communication protocol specification that uses HPKE.
+For example, the ECH defines it as a structure called HpkeKeyConfig.
+When using HPKE in an application, it is necessary to define the data structure corresponding to the HpkeKeyConfig and how the information is transferred from the recipient to the sender.<a href="#section-1-2" class="pilcrow">¶</a></p>
+<p id="section-1-3">This document defines how to represent the HPKE KEM key configuration information in COSE_Key and JWK.
+Specifically, this document defines (1) a common key parameter for defining the HPKE KEM configuration information in existing key types that can be used for key derivation and (2) a generic key type for HPKE that can also be used to represent a post-quantum KEM to be specified in the future.<a href="#section-1-3" class="pilcrow">¶</a></p>
+<p id="section-1-4">The ability to include HPKE-related information in JWK, which is widely used not only as the public key representation but also as the key publication method (via the JWK Set endpoint) at the application layer, and its binary representation, COSE_Key, will facilitate the use of HPKE in a wide variety of web applications and communication systems for constrained devices.<a href="#section-1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="conventions-and-definitions">
@@ -1223,53 +1244,65 @@ described in BCP 14 <span>[<a href="#RFC2119" class="cite xref">RFC2119</a>]</s
 appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="common-key-parameter-for-hpke-kem">
+<div id="common-key-parameter-for-hpke-key-configuration">
 <section id="section-3">
       <h2 id="name-common-key-parameter-for-hp">
-<a href="#section-3" class="section-number selfRef">3. </a><a href="#name-common-key-parameter-for-hp" class="section-name selfRef">Common Key Parameter for HPKE KEM</a>
+<a href="#section-3" class="section-number selfRef">3. </a><a href="#name-common-key-parameter-for-hp" class="section-name selfRef">Common Key Parameter for HPKE Key Configuration</a>
       </h2>
-<p id="section-3-1">The KEM key configuration information is defined as a common key parameter of JWK and COSE_Key. The parameter can be specified in the key that can be used for key derivation. In addition, the handling of existing common key parameters is also defined.<a href="#section-3-1" class="pilcrow">¶</a></p>
+<p id="section-3-1">The HPKE key configuration information is defined as a common key parameter of JWK and COSE_Key.
+The parameter can be specified in the key that can be used for key derivation. In addition, the handling of existing key parameters is also defined.<a href="#section-3-1" class="pilcrow">¶</a></p>
 <div id="jwk-parameter">
 <section id="section-3.1">
         <h3 id="name-jwk-parameter">
 <a href="#section-3.1" class="section-number selfRef">3.1. </a><a href="#name-jwk-parameter" class="section-name selfRef">JWK Parameter</a>
         </h3>
-<p id="section-3.1-1">The KEM key configuration parameter for JWK is defined as follows:<a href="#section-3.1-1" class="pilcrow">¶</a></p>
+<div id="hkc-hpke-key-configuration-parameter">
+<section id="section-3.1.1">
+          <h4 id="name-hkc-hpke-key-configuration-">
+<a href="#section-3.1.1" class="section-number selfRef">3.1.1. </a><a href="#name-hkc-hpke-key-configuration-" class="section-name selfRef">"hkc" (HPKE Key Configuration) Parameter</a>
+          </h4>
+<p id="section-3.1.1-1">The "hkc" (KPKE key configuration) parameter identifies the KEM for the recipient key and the set of KDF and AEAD algorithms supported by the recipient.
+It <span class="bcp14">MUST</span> contain the object consisting of the following three attributes.
+A JWK used for HPKE KEM <span class="bcp14">MUST</span> have this parameter.<a href="#section-3.1.1-1" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-3.1-2.1">
-            <p id="section-3.1-2.1.1">"hkc" (HPKE Key Configuration): The parameter <span class="bcp14">MUST</span> contain the object consisting of the following three attributes. A JWK used for HPKE KEM <span class="bcp14">MUST</span> have this parameter.<a href="#section-3.1-2.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-3.1.1-2.1">"kem": The HPKE KEM identifier, which is a two-byte value registered in the IANA HPKE registry.<a href="#section-3.1.1-2.1" class="pilcrow">¶</a>
+</li>
+            <li class="normal" id="section-3.1.1-2.2">"kdfs": The array of the HPKE KDF identifiers supported by the recipient. The KDF identifier is also a two-byte value registered in the IANA HPKE registry.<a href="#section-3.1.1-2.2" class="pilcrow">¶</a>
+</li>
+            <li class="normal" id="section-3.1.1-2.3">"aeads": The array of the HPKE AEAD identifiers supported by the recipient. The AEAD identifier is also a two-byte value registered in the IANA HPKE registry.<a href="#section-3.1.1-2.3" class="pilcrow">¶</a>
+</li>
+          </ul>
+</section>
+</div>
+<div id="restrictions-on-the-use-of-existing-key-parameters">
+<section id="section-3.1.2">
+          <h4 id="name-restrictions-on-the-use-of-">
+<a href="#section-3.1.2" class="section-number selfRef">3.1.2. </a><a href="#name-restrictions-on-the-use-of-" class="section-name selfRef">Restrictions on the Use of Existing Key Parameters</a>
+          </h4>
+<p id="section-3.1.2-1">The restrictions on the use of existing common key parameters in a JWK for HPKE KEM are as follows:<a href="#section-3.1.2-1" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-3.1-2.1.2.1">"kem": The HPKE KEM identifier, which is a two-byte value registered in the IANA HPKE registry.<a href="#section-3.1-2.1.2.1" class="pilcrow">¶</a>
-</li>
-              <li class="normal" id="section-3.1-2.1.2.2">"kdfs": The array of the HPKE KDF identifiers supported by the recipient. The KDF identifier is also a two-byte value registered in the IANA HPKE registry.<a href="#section-3.1-2.1.2.2" class="pilcrow">¶</a>
-</li>
-              <li class="normal" id="section-3.1-2.1.2.3">"aeads": The array of the HPKE AEAD identifiers supported by the recipient. The AEAD identifier is also a two-byte value registered in the IANA HPKE registry.<a href="#section-3.1-2.1.2.3" class="pilcrow">¶</a>
-</li>
-            </ul>
-</li>
-        </ul>
-<p id="section-3.1-3">The restrictions on the use of existing common key parameters in a JWK for the HPKE KEM are as follows:<a href="#section-3.1-3" class="pilcrow">¶</a></p>
+<li class="normal" id="section-3.1.2-2.1">
+              <p id="section-3.1.2-2.1.1">"alg": The parameter <span class="bcp14">MUST</span> be one of the following values if specified. If omitted, it <span class="bcp14">MUST</span> be treated as "HPKE-v1-Base".<a href="#section-3.1.2-2.1.1" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-3.1-4.1">
-            <p id="section-3.1-4.1.1">"alg": The parameter <span class="bcp14">MUST</span> be one of the following values if specified. If omitted, it <span class="bcp14">MUST</span> be treated as "HPKE-v1-Base".<a href="#section-3.1-4.1.1" class="pilcrow">¶</a></p>
-<ul class="normal">
-<li class="normal" id="section-3.1-4.1.2.1">"HPKE-v1-Base"<a href="#section-3.1-4.1.2.1" class="pilcrow">¶</a>
+<li class="normal" id="section-3.1.2-2.1.2.1">"HPKE-v1-Base"<a href="#section-3.1.2-2.1.2.1" class="pilcrow">¶</a>
 </li>
-              <li class="normal" id="section-3.1-4.1.2.2">"HPKE-v1-PSK"<a href="#section-3.1-4.1.2.2" class="pilcrow">¶</a>
+                <li class="normal" id="section-3.1.2-2.1.2.2">"HPKE-v1-PSK"<a href="#section-3.1.2-2.1.2.2" class="pilcrow">¶</a>
 </li>
-              <li class="normal" id="section-3.1-4.1.2.3">"HPKE-v1-Auth"<a href="#section-3.1-4.1.2.3" class="pilcrow">¶</a>
+                <li class="normal" id="section-3.1.2-2.1.2.3">"HPKE-v1-Auth"<a href="#section-3.1.2-2.1.2.3" class="pilcrow">¶</a>
 </li>
-              <li class="normal" id="section-3.1-4.1.2.4">"HPKE-v1-AuthPSK"<a href="#section-3.1-4.1.2.4" class="pilcrow">¶</a>
+                <li class="normal" id="section-3.1.2-2.1.2.4">"HPKE-v1-AuthPSK"<a href="#section-3.1.2-2.1.2.4" class="pilcrow">¶</a>
 </li>
-            </ul>
+              </ul>
 </li>
-          <li class="normal" id="section-3.1-4.2">"use": The parameter <span class="bcp14">SHOULD NOT</span> be specified. If specified, it <span class="bcp14">MUST</span> be "enc".<a href="#section-3.1-4.2" class="pilcrow">¶</a>
+            <li class="normal" id="section-3.1.2-2.2">"use": The parameter <span class="bcp14">SHOULD NOT</span> be specified. If specified, it <span class="bcp14">MUST</span> be "enc".<a href="#section-3.1.2-2.2" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-3.1-4.3">"key_ops": The parameter <span class="bcp14">SHOULD NOT</span> be specified. If specified, it <span class="bcp14">MUST</span> include "deriveKey" and/or "deriveBits".<a href="#section-3.1-4.3" class="pilcrow">¶</a>
+            <li class="normal" id="section-3.1.2-2.3">"key_ops": The parameter <span class="bcp14">SHOULD NOT</span> be specified. If specified, it <span class="bcp14">MUST</span> include "deriveKey" and/or "deriveBits".<a href="#section-3.1.2-2.3" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-3.1-4.4">etc.<a href="#section-3.1-4.4" class="pilcrow">¶</a>
+            <li class="normal" id="section-3.1.2-2.4">etc.<a href="#section-3.1.2-2.4" class="pilcrow">¶</a>
 </li>
-        </ul>
+          </ul>
+</section>
+</div>
 </section>
 </div>
 <div id="cose-key-common-parameter">
@@ -1277,21 +1310,26 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
         <h3 id="name-cose-key-common-parameter">
 <a href="#section-3.2" class="section-number selfRef">3.2. </a><a href="#name-cose-key-common-parameter" class="section-name selfRef">COSE Key Common Parameter</a>
         </h3>
-<p id="section-3.2-1">The KEM key configuration parameter for COSE_Key is defined as follows:<a href="#section-3.2-1" class="pilcrow">¶</a></p>
+<div id="hkc-hpke-key-configuration-parameter-1">
+<section id="section-3.2.1">
+          <h4 id="name-hkc-hpke-key-configuration-p">
+<a href="#section-3.2.1" class="section-number selfRef">3.2.1. </a><a href="#name-hkc-hpke-key-configuration-p" class="section-name selfRef">hkc (HPKE Key Configuration) Parameter</a>
+          </h4>
+<p id="section-3.2.1-1">The HPKE key configuration parameter for COSE_Key is defined as follows:<a href="#section-3.2.1-1" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-3.2-2.1">hkc (HPKE Key Configuration): The parameter <span class="bcp14">MUST</span> contain an array structure named HPKE_Key_Configuration, which contains the same information as "hkc" in JWK above. The CDDL grammar describing the HPKE_Key_Configuration structure is:<a href="#section-3.2-2.1" class="pilcrow">¶</a>
+<li class="normal" id="section-3.2.1-2.1">hkc (HPKE Key Configuration): The parameter <span class="bcp14">MUST</span> contain an array structure named HPKE_Key_Configuration, which contains the same information as "hkc" in JWK above. The CDDL grammar describing the HPKE_Key_Configuration structure is:<a href="#section-3.2.1-2.1" class="pilcrow">¶</a>
 </li>
-        </ul>
-<div class="alignLeft art-text artwork" id="section-3.2-3">
+          </ul>
+<div class="alignLeft art-text artwork" id="section-3.2.1-3">
 <pre>
 HPKE_Key_Configuration = [
     kem: uint,              ; KEM identifier
     kdfs: uint / [+uint],   ; KDF identifiers
     aeads: uint / [+uint],  ; AEAD identifiers
 ]
-</pre><a href="#section-3.2-3" class="pilcrow">¶</a>
+</pre><a href="#section-3.2.1-3" class="pilcrow">¶</a>
 </div>
-<div class="alignLeft art-text artwork" id="section-3.2-4">
+<div class="alignLeft art-text artwork" id="section-3.2.1-4">
 <pre>
    +---------+----------------+-------------+----------------------+
    | Name    | CBOR Type      | Value       | Description          |
@@ -1309,28 +1347,37 @@ HPKE_Key_Configuration = [
    |         |                |             | recipient            |
    |         |                |             |                      |
    +---------+----------------+-------------+----------------------+
-</pre><a href="#section-3.2-4" class="pilcrow">¶</a>
+</pre><a href="#section-3.2.1-4" class="pilcrow">¶</a>
 </div>
-<p id="section-3.2-5">The restrictions on the use of existing common key parameters in a COSE_Key for the HPKE KEM are as follows:<a href="#section-3.2-5" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="restrictions-on-the-use-of-existing-key-parameters-1">
+<section id="section-3.2.2">
+          <h4 id="name-restrictions-on-the-use-of-e">
+<a href="#section-3.2.2" class="section-number selfRef">3.2.2. </a><a href="#name-restrictions-on-the-use-of-e" class="section-name selfRef">Restrictions on the Use of Existing Key Parameters</a>
+          </h4>
+<p id="section-3.2.2-1">The restrictions on the use of existing common key parameters in a COSE_Key for the HPKE KEM are as follows:<a href="#section-3.2.2-1" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-3.2-6.1">
-            <p id="section-3.2-6.1.1">alg(3): The parameter <span class="bcp14">MUST</span> be one of the following values if specified. If omitted, it <span class="bcp14">MUST</span> be treated as HPKE-v1-Base(T.B.D.).<a href="#section-3.2-6.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-3.2.2-2.1">
+              <p id="section-3.2.2-2.1.1">alg(3): The parameter <span class="bcp14">MUST</span> be one of the following values if specified. If omitted, it <span class="bcp14">MUST</span> be treated as HPKE-v1-Base(T.B.D.).<a href="#section-3.2.2-2.1.1" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-3.2-6.1.2.1">HPKE-v1-Base (T.B.D.)<a href="#section-3.2-6.1.2.1" class="pilcrow">¶</a>
+<li class="normal" id="section-3.2.2-2.1.2.1">HPKE-v1-Base (T.B.D.)<a href="#section-3.2.2-2.1.2.1" class="pilcrow">¶</a>
 </li>
-              <li class="normal" id="section-3.2-6.1.2.2">HPKE-v1-PSK (T.B.D.)<a href="#section-3.2-6.1.2.2" class="pilcrow">¶</a>
+                <li class="normal" id="section-3.2.2-2.1.2.2">HPKE-v1-PSK (T.B.D.)<a href="#section-3.2.2-2.1.2.2" class="pilcrow">¶</a>
 </li>
-              <li class="normal" id="section-3.2-6.1.2.3">HPKE-v1-Auth (T.B.D.)<a href="#section-3.2-6.1.2.3" class="pilcrow">¶</a>
+                <li class="normal" id="section-3.2.2-2.1.2.3">HPKE-v1-Auth (T.B.D.)<a href="#section-3.2.2-2.1.2.3" class="pilcrow">¶</a>
 </li>
-              <li class="normal" id="section-3.2-6.1.2.4">HPKE-v1-AuthPSK (T.B.D.)<a href="#section-3.2-6.1.2.4" class="pilcrow">¶</a>
+                <li class="normal" id="section-3.2.2-2.1.2.4">HPKE-v1-AuthPSK (T.B.D.)<a href="#section-3.2.2-2.1.2.4" class="pilcrow">¶</a>
 </li>
-            </ul>
+              </ul>
 </li>
-          <li class="normal" id="section-3.2-6.2">key_ops(4): The parameter <span class="bcp14">SHOULD NOT</span> be specified. If specified, it <span class="bcp14">MUST</span> include "derive key"(7) and/or "derive bits"(8).<a href="#section-3.2-6.2" class="pilcrow">¶</a>
+            <li class="normal" id="section-3.2.2-2.2">key_ops(4): The parameter <span class="bcp14">SHOULD NOT</span> be specified. If specified, it <span class="bcp14">MUST</span> include "derive key"(7) and/or "derive bits"(8).<a href="#section-3.2.2-2.2" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-3.2-6.3">etc.<a href="#section-3.2-6.3" class="pilcrow">¶</a>
+            <li class="normal" id="section-3.2.2-2.3">etc.<a href="#section-3.2.2-2.3" class="pilcrow">¶</a>
 </li>
-        </ul>
+          </ul>
+</section>
+</div>
 </section>
 </div>
 </section>
@@ -1342,10 +1389,10 @@ HPKE_Key_Configuration = [
       </h2>
 <p id="section-4-1">A generic key type for the HPKE KEM keys including a post-quantum KEM defined in the future is defined.
 Even KEM keys that can be represented by existing key types can use the generic key type defined here.<a href="#section-4-1" class="pilcrow">¶</a></p>
-<div id="key-type-hpke-kem-for-jwk">
+<div id="key-type-for-jwk">
 <section id="section-4.1">
-        <h3 id="name-key-type-hpke-kem-for-jwk">
-<a href="#section-4.1" class="section-number selfRef">4.1. </a><a href="#name-key-type-hpke-kem-for-jwk" class="section-name selfRef">Key Type "HPKE-KEM" for JWK</a>
+        <h3 id="name-key-type-for-jwk">
+<a href="#section-4.1" class="section-number selfRef">4.1. </a><a href="#name-key-type-for-jwk" class="section-name selfRef">Key Type for JWK</a>
         </h3>
 <p id="section-4.1-1">A new generic key type (kty) value "HPKE-KEM" is defined to represent the private and public key used for the HPKE KEM.
 A key with this kty has the following parameters:<a href="#section-4.1-1" class="pilcrow">¶</a></p>
@@ -1361,10 +1408,10 @@ A key with this kty has the following parameters:<a href="#section-4.1-1" class=
         </ul>
 </section>
 </div>
-<div id="key-type-hpke-kem-for-cosekey">
+<div id="key-type-for-cosekey">
 <section id="section-4.2">
-        <h3 id="name-key-type-hpke-kem-for-cose_">
-<a href="#section-4.2" class="section-number selfRef">4.2. </a><a href="#name-key-type-hpke-kem-for-cose_" class="section-name selfRef">Key Type HPKE-KEM for COSE_Key</a>
+        <h3 id="name-key-type-for-cose_key">
+<a href="#section-4.2" class="section-number selfRef">4.2. </a><a href="#name-key-type-for-cose_key" class="section-name selfRef">Key Type for COSE_Key</a>
         </h3>
 <p id="section-4.2-1">A new generic kty(1) value HPKE-KEM(T.B.D.) is defined to represent the private and public key used for the HPKE KEM.
 A key with this kty has the following parameters:<a href="#section-4.2-1" class="pilcrow">¶</a></p>
@@ -1433,7 +1480,7 @@ A key with this kty has the following parameters:<a href="#section-4.2-1" class=
     "hkc": {
         "kem": 0x020,
         "kdfs": [0x001, 0x002, 0x003],
-        "kems": [0x001, 0x002]
+        "aeads": [0x001, 0x002]
     },
     "x": "y3wJq3uXPHeoCO4FubvTc7VcBuqpvUrSvU6ZMbHDTCI"
 }
@@ -1455,7 +1502,7 @@ A key with this kty has the following parameters:<a href="#section-4.2-1" class=
     "hkc": {
         "kem": 0x021,
         "kdfs": [0x001, 0x002, 0x003],
-        "kems": [0x001, 0x002]
+        "aeads": [0x001, 0x002]
     },
     "pub": "IkLmc0klvEMXYneHMKAB6ePohryAwAPVe2pRSffIDY6NrjeYNWVX5J-fG4NV2OoU77C88A0mvxI",
     "priv": "rJJRG3nshyCtd9CgXld8aNaB9YXKR0UOi7zj7hApg9YH4XdBO0G8NcAFNz_uPH2GnCZVcSDgV5c"
@@ -1530,7 +1577,7 @@ A key with this kty has the following parameters:<a href="#section-4.2-1" class=
 <div dir="auto" class="left"><span class="org">Independent</span></div>
 <div class="email">
 <span>Email:</span>
-<a href="mailto:ajitomi@gmail.com" class="email">ajitomi@gmail.com</a>
+<a href="mailto:dajiaji@gmail.com" class="email">dajiaji@gmail.com</a>
 </div>
 </address>
 </section>
