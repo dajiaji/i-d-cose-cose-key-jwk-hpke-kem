@@ -4,8 +4,8 @@
 
 CBOR Object Signing and Encryption                            D. Ajitomi
 Internet-Draft                                               Independent
-Intended status: Standards Track                         28 January 2023
-Expires: 1 August 2023
+Intended status: Standards Track                         30 January 2023
+Expires: 3 August 2023
 
 
 COSE Key and JSON Web Key Representation for Key Encapsulation Mechanism
@@ -24,10 +24,10 @@ About This Document
    This note is to be removed before publishing as an RFC.
 
    The latest revision of this draft can be found at
-   https://dajiaji.github.io/i-d-cose-key-jwk-hpke/draft-ajitomi-cose-
-   cose-key-jwk-hpke-kem.html.  Status information for this document may
-   be found at https://datatracker.ietf.org/doc/draft-ajitomi-cose-cose-
-   key-jwk-hpke-kem/.
+   https://dajiaji.github.io/i-d-cose-cose-key-jwk-hpke-kem/draft-
+   ajitomi-cose-cose-key-jwk-hpke-kem.html.  Status information for this
+   document may be found at https://datatracker.ietf.org/doc/draft-
+   ajitomi-cose-cose-key-jwk-hpke-kem/.
 
    Discussion of this document takes place on the CBOR Object Signing
    and Encryption Working Group mailing list (mailto:cose@ietf.org),
@@ -35,7 +35,7 @@ About This Document
    Subscribe at https://www.ietf.org/mailman/listinfo/cose/.
 
    Source for this draft and an issue tracker can be found at
-   https://github.com/dajiaji/i-d-cose-key-jwk-hpke.
+   https://github.com/dajiaji/i-d-cose-cose-key-jwk-hpke-kem.
 
 Status of This Memo
 
@@ -52,7 +52,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 1 August 2023.
+   This Internet-Draft will expire on 3 August 2023.
 
 Copyright Notice
 
