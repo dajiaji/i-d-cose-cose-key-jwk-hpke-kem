@@ -182,7 +182,7 @@ TODO
     "hkc": {
         "kem": 0x020,
         "kdfs": [0x001, 0x002, 0x003],
-        "kems": [0x001, 0x002]
+        "aeads": [0x001, 0x002]
     },
     "x": "y3wJq3uXPHeoCO4FubvTc7VcBuqpvUrSvU6ZMbHDTCI"
 }
@@ -198,7 +198,7 @@ TODO
     "hkc": {
         "kem": 0x021,
         "kdfs": [0x001, 0x002, 0x003],
-        "kems": [0x001, 0x002]
+        "aeads": [0x001, 0x002]
     },
     "pub": "IkLmc0klvEMXYneHMKAB6ePohryAwAPVe2pRSffIDY6NrjeYNWVX5J-fG4NV2OoU77C88A0mvxI",
     "priv": "rJJRG3nshyCtd9CgXld8aNaB9YXKR0UOi7zj7hApg9YH4XdBO0G8NcAFNz_uPH2GnCZVcSDgV5c"
