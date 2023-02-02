@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2023-01-31T00:19:29.107084+00:00",
+  "timestamp": "2023-02-02T00:19:14.694174+00:00",
   "repo": "dajiaji/i-d-cose-cose-key-jwk-hpke-kem",
   "labels": [
     {
@@ -456,6 +456,34 @@
       "mergedBy": "dajiaji",
       "mergeCommit": {
         "oid": "95091ce71f6da5f170ba04122361101e38ec89c1"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 16,
+      "id": "PR_kwDOIHG51s5I5RIQ",
+      "title": "Fix link on README.",
+      "url": "https://github.com/dajiaji/i-d-cose-cose-key-jwk-hpke-kem/pull/16",
+      "state": "MERGED",
+      "author": "dajiaji",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2023-01-31T09:24:00Z",
+      "updatedAt": "2023-01-31T09:25:46Z",
+      "baseRepository": "dajiaji/i-d-cose-cose-key-jwk-hpke-kem",
+      "baseRefName": "main",
+      "baseRefOid": "95091ce71f6da5f170ba04122361101e38ec89c1",
+      "headRepository": "dajiaji/i-d-cose-cose-key-jwk-hpke-kem",
+      "headRefName": "fix-readme",
+      "headRefOid": "740a49136d7f7d84b9bc6260a659da9cab11ff54",
+      "closedAt": "2023-01-31T09:25:46Z",
+      "mergedAt": "2023-01-31T09:25:46Z",
+      "mergedBy": "dajiaji",
+      "mergeCommit": {
+        "oid": "46ed6d3fcb3405800fc0a077e3c777d86e03f549"
       },
       "comments": [],
       "reviews": []
