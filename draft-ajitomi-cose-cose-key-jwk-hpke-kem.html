@@ -1227,9 +1227,11 @@ HPKE itself is communication protocol independent and can be widely used as a st
 <p id="section-1-2">In HPKE, the sender of a ciphertext needs to know in advance not only the recipient public key, but also the HPKE mode, the KEM associated with the key, and the set of supported KDF and AEAD algorithms.
 The data structure of this information (hereafter referred to as HPKE key configuration information) is defined in each communication protocol specification that uses HPKE.
 For example, the ECH defines it as a structure called HpkeKeyConfig.
-When using HPKE in an application, it is necessary to define the data structure corresponding to the HpkeKeyConfig and how the information is transferred from the recipient to the sender.<a href="#section-1-2" class="pilcrow">¶</a></p>
+When using HPKE in an application, it is necessary to define the data structure corresponding to the HpkeKeyConfig and how the information is transferred from the recipient to the sender.
+If the data structure and the publication method for the HPKE key configuration information were standardized, it would be easier to use HPKE in applications.<a href="#section-1-2" class="pilcrow">¶</a></p>
 <p id="section-1-3">This document defines how to represent the HPKE KEM key configuration information in COSE_Key and JWK.
-Specifically, this document defines (1) a common key parameter for defining the HPKE KEM configuration information in existing key types that can be used for key derivation and (2) a generic key type for HPKE that can also be used to represent a post-quantum KEM to be specified in the future.<a href="#section-1-3" class="pilcrow">¶</a></p>
+Specifically, this document defines (1) a common key parameter for defining the HPKE KEM configuration information in existing key types that can be used for key derivation and (2) a generic key type for HPKE that can also be used to represent a post-quantum KEM to be specified in the future.
+The generic key type for HPKE can be represented by JWK and COSE_Key if the KEM is registered in the HPKE IANA registry, without the need to define dedicated key parameters such as for EC or RSA.<a href="#section-1-3" class="pilcrow">¶</a></p>
 <p id="section-1-4">The ability to include HPKE-related information in JWK, which is widely used not only as the public key representation but also as the key publication method (via the JWK Set endpoint) at the application layer, and its binary representation, COSE_Key, will facilitate the use of HPKE in a wide variety of web applications and communication systems for constrained devices.<a href="#section-1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -1282,7 +1284,7 @@ A JWK used for HPKE KEM <span class="bcp14">MUST</span> have this parameter.<a h
 <p id="section-3.1.2-1">The restrictions on the use of existing common key parameters in a JWK for HPKE KEM are as follows:<a href="#section-3.1.2-1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-3.1.2-2.1">
-              <p id="section-3.1.2-2.1.1">"alg": The parameter <span class="bcp14">MUST</span> be present and containes one of the following values:<a href="#section-3.1.2-2.1.1" class="pilcrow">¶</a></p>
+              <p id="section-3.1.2-2.1.1">"alg": The parameter <span class="bcp14">MUST</span> be present and contains one of the following values:<a href="#section-3.1.2-2.1.1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-3.1.2-2.1.2.1">"HPKE-v1-Base"<a href="#section-3.1.2-2.1.2.1" class="pilcrow">¶</a>
 </li>
@@ -1399,7 +1401,7 @@ A key with this kty has the following parameters:<a href="#section-4.1-1" class=
 <ul class="normal">
 <li class="normal" id="section-4.1-2.1">The parameter "kty" <span class="bcp14">MUST</span> be "HPKE-KEM".<a href="#section-4.1-2.1" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-4.1-2.2">The parameter "hkc" <span class="bcp14">MUST</span> be present and contains the HPKE Key Configuration defined in Section X.X.<a href="#section-4.1-2.2" class="pilcrow">¶</a>
+          <li class="normal" id="section-4.1-2.2">The parameter "hkc" <span class="bcp14">MUST</span> be present and contains the HPKE Key Configuration defined in Section 3.1.1.<a href="#section-4.1-2.2" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="section-4.1-2.3">The parameter "pub" <span class="bcp14">MUST</span> be present and contains the public key encoded using the base64url [RFC4648] encoding.<a href="#section-4.1-2.3" class="pilcrow">¶</a>
 </li>
@@ -1418,7 +1420,7 @@ A key with this kty has the following parameters:<a href="#section-4.2-1" class=
 <ul class="normal">
 <li class="normal" id="section-4.2-2.1">The parameter kty(1) <span class="bcp14">MUST</span> be HPKE-KEM(T.B.D).<a href="#section-4.2-2.1" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-4.2-2.2">The parameter hkc(T.B.D.) <span class="bcp14">MUST</span> be present and contains the HPKE Key Configuration defined in Section X.X.<a href="#section-4.2-2.2" class="pilcrow">¶</a>
+          <li class="normal" id="section-4.2-2.2">The parameter hkc(T.B.D.) <span class="bcp14">MUST</span> be present and contains the HPKE Key Configuration defined in Section 3.2.1.<a href="#section-4.2-2.2" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="section-4.2-2.3">The parameter pub(-1) <span class="bcp14">MUST</span> be present and contains the public key encoded in a byte string (bstr type).<a href="#section-4.2-2.3" class="pilcrow">¶</a>
 </li>
