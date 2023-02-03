@@ -45,9 +45,11 @@ In HPKE, the sender of a ciphertext needs to know in advance not only the recipi
 The data structure of this information (hereafter referred to as HPKE key configuration information) is defined in each communication protocol specification that uses HPKE.
 For example, the ECH defines it as a structure called HpkeKeyConfig.
 When using HPKE in an application, it is necessary to define the data structure corresponding to the HpkeKeyConfig and how the information is transferred from the recipient to the sender.
+If the data structure and the publication method for the HPKE key configuration information were standardized, it would be easier to use HPKE in applications.
 
 This document defines how to represent the HPKE KEM key configuration information in COSE_Key and JWK.
 Specifically, this document defines (1) a common key parameter for defining the HPKE KEM configuration information in existing key types that can be used for key derivation and (2) a generic key type for HPKE that can also be used to represent a post-quantum KEM to be specified in the future.
+The generic key type for HPKE can be represented by JWK and COSE_Key if the KEM is registered in the HPKE IANA registry, without the need to define dedicated key parameters such as for EC or RSA.
 
 The ability to include HPKE-related information in JWK, which is widely used not only as the public key representation but also as the key publication method (via the JWK Set endpoint) at the application layer, and its binary representation, COSE_Key, will facilitate the use of HPKE in a wide variety of web applications and communication systems for constrained devices.
 
@@ -76,7 +78,7 @@ A JWK used for HPKE KEM MUST have this parameter.
 
 The restrictions on the use of existing common key parameters in a JWK for HPKE KEM are as follows:
 
-- "alg": The parameter MUST be present and containes one of the following values:
+- "alg": The parameter MUST be present and contains one of the following values:
     - "HPKE-v1-Base"
     - "HPKE-v1-PSK"
     - "HPKE-v1-Auth"
@@ -143,7 +145,7 @@ A new generic key type (kty) value "HPKE-KEM" is defined to represent the privat
 A key with this kty has the following parameters:
 
 - The parameter "kty" MUST be "HPKE-KEM".
-- The parameter "hkc" MUST be present and contains the HPKE Key Configuration defined in Section X.X.
+- The parameter "hkc" MUST be present and contains the HPKE Key Configuration defined in Section 3.1.1.
 - The parameter "pub" MUST be present and contains the public key encoded using the base64url [RFC4648] encoding.
 - The parameter "priv" MUST be present if the key is private key and contains the private key encoded using the base64url [RFC4648] encoding.
 
@@ -153,7 +155,7 @@ A new generic kty(1) value HPKE-KEM(T.B.D.) is defined to represent the private 
 A key with this kty has the following parameters:
 
 - The parameter kty(1) MUST be HPKE-KEM(T.B.D).
-- The parameter hkc(T.B.D.) MUST be present and contains the HPKE Key Configuration defined in Section X.X.
+- The parameter hkc(T.B.D.) MUST be present and contains the HPKE Key Configuration defined in Section 3.2.1.
 - The parameter pub(-1) MUST be present and contains the public key encoded in a byte string (bstr type).
 - The parameter priv(-2) MUST be present if the key is private key and contains the private key encoded in a byte string (bstr type).
 
