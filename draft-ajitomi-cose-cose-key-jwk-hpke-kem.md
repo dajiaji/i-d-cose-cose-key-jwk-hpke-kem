@@ -38,7 +38,7 @@ This document defines an additional key parameter and a new key type for CBOR Ob
 
 # Introduction
 
-Standardized by the Internet Research Task Force (IRTF), Hybrid Public Key Encryption (HPKE) has already been adopted in several communication protocol specifications such as TLS Encrypted Client Hello (ECH), Oblivious DNS over HTTPS (ODoH) and Oblivious HTTP (OHTTP).
+Hybrid Public Key Encryption (HPKE), published by the Internet Research Task Force (IRTF), has already been adopted in several communication protocol specifications such as TLS Encrypted Client Hello (ECH), Oblivious DNS over HTTPS (ODoH) and Oblivious HTTP (OHTTP).
 HPKE itself is communication protocol independent and can be widely used as a standard scheme for public key based end-to-end encryption in various applications, not only in communication protocols.
 
 In HPKE, the sender of a ciphertext needs to know in advance not only the recipient public key, but also the HPKE mode, the KEM associated with the key, and the set of supported KDF and AEAD algorithms.
@@ -76,7 +76,7 @@ A JWK used for HPKE KEM MUST have this parameter.
 
 The restrictions on the use of existing common key parameters in a JWK for HPKE KEM are as follows:
 
-- "alg": The parameter MUST be one of the following values if specified. If omitted, it MUST be treated as "HPKE-v1-Base".
+- "alg": The parameter MUST be present and containes one of the following values:
     - "HPKE-v1-Base"
     - "HPKE-v1-PSK"
     - "HPKE-v1-Auth"
@@ -124,7 +124,7 @@ HPKE_Key_Configuration = [
 
 The restrictions on the use of existing common key parameters in a COSE_Key for the HPKE KEM are as follows:
 
-- alg(3): The parameter MUST be one of the following values if specified. If omitted, it MUST be treated as HPKE-v1-Base(T.B.D.).
+- alg(3): The parameter MUST be present and contains one of the following values:
   - HPKE-v1-Base (T.B.D.)
   - HPKE-v1-PSK (T.B.D.)
   - HPKE-v1-Auth (T.B.D.)
@@ -154,8 +154,8 @@ A key with this kty has the following parameters:
 
 - The parameter kty(1) MUST be HPKE-KEM(T.B.D).
 - The parameter hkc(T.B.D.) MUST be present and contains the HPKE Key Configuration defined in Section X.X.
-- The parameter pub(-1) MUST be present and contains the public key encoded using the base64url [RFC4648] encoding.
-- The parameter priv(-2) MUST be present if the key is private key and contains the private key encoded using the base64url [RFC4648] encoding.
+- The parameter pub(-1) MUST be present and contains the public key encoded in a byte string (bstr type).
+- The parameter priv(-2) MUST be present if the key is private key and contains the private key encoded in a byte string (bstr type).
 
 # Security Considerations
 
