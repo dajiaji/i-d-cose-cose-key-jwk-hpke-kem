@@ -4,8 +4,8 @@
 
 CBOR Object Signing and Encryption                            D. Ajitomi
 Internet-Draft                                               Independent
-Intended status: Standards Track                         30 January 2023
-Expires: 3 August 2023
+Intended status: Standards Track                         3 February 2023
+Expires: 7 August 2023
 
 
 COSE Key and JSON Web Key Representation for Key Encapsulation Mechanism
@@ -52,7 +52,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 3 August 2023.
+   This Internet-Draft will expire on 7 August 2023.
 
 Copyright Notice
 
@@ -99,8 +99,8 @@ Table of Contents
 
 1.  Introduction
 
-   Standardized by the Internet Research Task Force (IRTF), Hybrid
-   Public Key Encryption (HPKE) has already been adopted in several
+   Hybrid Public Key Encryption (HPKE), published by the Internet
+   Research Task Force (IRTF), has already been adopted in several
    communication protocol specifications such as TLS Encrypted Client
    Hello (ECH), Oblivious DNS over HTTPS (ODoH) and Oblivious HTTP
    (OHTTP).  HPKE itself is communication protocol independent and can
@@ -174,8 +174,8 @@ Table of Contents
    The restrictions on the use of existing common key parameters in a
    JWK for HPKE KEM are as follows:
 
-   *  "alg": The parameter MUST be one of the following values if
-      specified.  If omitted, it MUST be treated as "HPKE-v1-Base".
+   *  "alg": The parameter MUST be present and containes one of the
+      following values:
 
       -  "HPKE-v1-Base"
 
@@ -233,9 +233,8 @@ Table of Contents
    The restrictions on the use of existing common key parameters in a
    COSE_Key for the HPKE KEM are as follows:
 
-   *  alg(3): The parameter MUST be one of the following values if
-      specified.  If omitted, it MUST be treated as HPKE-
-      v1-Base(T.B.D.).
+   *  alg(3): The parameter MUST be present and contains one of the
+      following values:
 
       -  HPKE-v1-Base (T.B.D.)
 
@@ -287,11 +286,10 @@ Table of Contents
       Key Configuration defined in Section X.X.
 
    *  The parameter pub(-1) MUST be present and contains the public key
-      encoded using the base64url [RFC4648] encoding.
+      encoded in a byte string (bstr type).
 
    *  The parameter priv(-2) MUST be present if the key is private key
-      and contains the private key encoded using the base64url [RFC4648]
-      encoding.
+      and contains the private key encoded in a byte string (bstr type).
 
 5.  Security Considerations
 
