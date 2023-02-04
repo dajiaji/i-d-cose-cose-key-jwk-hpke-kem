@@ -38,7 +38,7 @@ informative:
 
 --- abstract
 
-This document defines an additional key parameter and a new key type for CBOR Object Signing and Encryption (COSE) Key and JSON Web Key (JWK) to represent a Key Encapsulated Mechanism (KEM) key configuration of Hybrid Public Key Encryption (HPKE).
+This document defines an additional key parameter and a new key type for CBOR Object Signing and Encryption (COSE) Key and JSON Web Key (JWK) to represent a Key Encapsulated Mechanism (KEM) key and its associated information for Hybrid Public Key Encryption (HPKE).
 
 --- middle
 
@@ -53,9 +53,9 @@ For example, the ECH defines it as a structure called HpkeKeyConfig.
 When using HPKE in an application, it is necessary to define the data structure corresponding to the HpkeKeyConfig and how the information is transferred from the recipient to the sender.
 If the data structure and the publication method for the HPKE key configuration information were standardized, it would be easier to use HPKE in applications.
 
-This document defines how to represent the HPKE KEM key configuration information in JSON Web Key (JWK) {{RFC7517}} and COSE_Key defined in CBOR Object Signing and Encryption (COSE) Structures and Process {{RFC9052}}.
-Specifically, this document defines (1) a common key parameter for defining the HPKE KEM configuration information in existing key types that can be used for key derivation and (2) a generic key type for HPKE that can also be used to represent a post-quantum KEM to be specified in the future.
-The generic key type for HPKE can be represented by JWK and COSE_Key if the KEM is registered in the HPKE IANA registry, without the need to define dedicated key parameters such as for EC or RSA ({{RFC7518}}, {{RFC9053}}).
+This document defines how to represent a KEM key for HPKE and the HPKE key configuration information in JSON Web Key (JWK) {{RFC7517}} and COSE_Key defined in CBOR Object Signing and Encryption (COSE) Structures and Process {{RFC9052}}.
+Specifically, this document defines (1) a common key parameter for defining the HPKE key configuration information in existing key types that can be used for key derivation and (2) a generic key type for HPKE that can also be used to represent post-quantum KEM keys to be specified in the future.
+By using the generic key type for HPKE, all KEM keys registered in the IANA HPKE registry can be represented in JWK and COSE_Key without the need to define cryptographic algorithm-specific key types and parameters such as for EC or RSA as defined in {{RFC7518}} and {{RFC9053}}.
 
 The ability to include HPKE-related information in JWK, which is widely used not only as the public key representation but also as the key publication method (via the JWK Set endpoint) at the application layer, and its binary representation, COSE_Key, will facilitate the use of HPKE in a wide variety of web applications and communication systems for constrained devices.
 
