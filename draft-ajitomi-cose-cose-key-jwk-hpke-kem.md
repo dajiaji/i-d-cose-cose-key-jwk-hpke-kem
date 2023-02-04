@@ -183,7 +183,25 @@ TODO
 
 # Examples
 
-## JWK for DHKEM(X25519, KDF-SHA-256) Public Key with Key Type "OKP"
+## JWK for DHKEM(P-256, KDF-SHA256) Public Key with Key Type "EC"
+
+~~~
+{
+    "kty": "EC",
+    "kid": "01",
+    "crv": "P-256",
+    "alg": "HPKE-v1-Base",
+    "hkc": {
+        "kem": 0x010,
+        "kdfs": [0x001, 0x002, 0x003],
+        "aeads": [0x001, 0x002]
+    },
+    "x": "-eZXC6nV-xgthy8zZMCN8pcYSeE2XfWWqckA2fsxHPc",
+    "y": "BGU5soLgsu_y7GN2I3EPUXS9EZ7Sw0qif-V70JtInFI"
+}
+~~~
+
+## JWK for DHKEM(X25519, KDF-SHA256) Public Key with Key Type "OKP"
 
 ~~~
 {
@@ -200,7 +218,7 @@ TODO
 }
 ~~~
 
-## JWK for DHKEM(X448, KDF-SHA-512) Private Key with Key Type "HPKE-KEM"
+## JWK for DHKEM(X25519, KDF-SHA256) Private Key with Key Type "HPKE-KEM"
 
 ~~~
 {
@@ -208,47 +226,65 @@ TODO
     "kid": "01",
     "alg": "HPKE-v1-Base",
     "hkc": {
-        "kem": 0x021,
+        "kem": 0x020,
         "kdfs": [0x001, 0x002, 0x003],
         "aeads": [0x001, 0x002]
     },
-    "pub": "IkLmc0klvEMXYneHMKAB6ePohryAwAPVe2pRSffIDY6NrjeYNWVX5J-fG4NV2OoU77C88A0mvxI",
-    "priv": "rJJRG3nshyCtd9CgXld8aNaB9YXKR0UOi7zj7hApg9YH4XdBO0G8NcAFNz_uPH2GnCZVcSDgV5c"
+    "pub": "y3wJq3uXPHeoCO4FubvTc7VcBuqpvUrSvU6ZMbHDTCI",
+    "priv": "vsJ1oX5NNi0IGdwGldiac75r-Utmq3Jq4LGv48Q_Qc4"
 }
 ~~~
 
-## COSE_Key for DHKEM(X25519, KDF-SHA-256) Public Key with Key Type OKP(1)
+## COSE_Key for DHKEM(P-256, KDF-SHA256) Public Key with Key Type EC2(2)
 
 ~~~
-  {
+{
+    1:2,          // EC2
+    2:'01',
+    3:-1(T.B.D),  // HPKE-v1-Base
+    -1:1,         // P-256
+    6(T.B.D): [   // hkc (HPKE Key Configuration)
+        0x0010,                    // KEM identifier
+        [0x0001, 0x0002, 0x0003],  // supported KDF identifiers
+        [0x0001, 0x0002]           // supported AEAD identifiers
+    ],
+    -2:h'65eda5a12577c2bae829437fe338701a10aaa375e1bb5b5de108de439c08551d',
+    -3:h'1e52ed75701163f7f9e40ddf9f341b3dc9ba860af7e0ca7ca7e9eecd0084d19c'
+}
+~~~
+
+## COSE_Key for DHKEM(X25519, KDF-SHA256) Public Key with Key Type OKP(1)
+
+~~~
+{
     1:1,          // OKP
     2:'01',
     3:-1(T.B.D),  // HPKE-v1-Base
     -1:4,         // X25519
     6(T.B.D): [   // hkc (HPKE Key Configuration)
-        0x0020,
-        [0x0001, 0x0002, 0x0003],
-        [0x0001, 0x0002]
+        0x0020,                    // KEM identifier
+        [0x0001, 0x0002, 0x0003],  // supported KDF identifiers
+        [0x0001, 0x0002]           // supported AEAD identifiers
     ],
     -2:h'd75a980182b10ab7d54bfed3c964073a0ee172f3daa62325af021a68f707511a'
-  }
+}
 ~~~
 
-## COSE_Key for DHKEM(X448, KDF-SHA-512) Private Key with Key Type HPKE-KEM(T.B.D)
+## COSE_Key for DHKEM(X25519, KDF-SHA256) Private Key with Key Type HPKE-KEM(T.B.D)
 
 ~~~
-  {
+{
     1:-1(T.B.D.),  // HPKE-KEM
     2:'01',
     3:-1(T.B.D),   // HPKE-v1-Base
     6(T.B.D): [    // hkc (HPKE Key Configuration)
-        0x0021,                    // KEM id
-        [0x0001, 0x0002, 0x0003],  // supported KDF ids
-        [0x0001, 0x0002]           // supported AEAD ids
+        0x0020,                    // KEM identifier
+        [0x0001, 0x0002, 0x0003],  // supported KDF identifiers
+        [0x0001, 0x0002]           // supported AEAD identifiers
     ],
-    -1:h'5fd7449b59b461fd2ce787ec616ad46a1da1342485a70e1f8a0ea75d80e96778edf124769b46c7061bd6783df1e50f6cd1fa1abeafe8256180',
-    -2:h'6c82a562cb808d10d632be89c8513ebf6c929f34ddfa8c9f63c9960ef6e348a3528c8a3fcc2f044e39a3fc5b94492f8f032e7549a20098f95b'
-  }
+    -1:h'd75a980182b10ab7d54bfed3c964073a0ee172f3daa62325af021a68f707511a',
+    -2:h'9d61b19deffd5a60ba844af492ec2cc44449c5697b326919703bac031cae7f60'
+}
 ~~~
 
 # Acknowledgments
