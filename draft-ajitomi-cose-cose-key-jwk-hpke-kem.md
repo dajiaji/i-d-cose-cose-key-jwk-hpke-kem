@@ -20,10 +20,10 @@ venue:
   latest: "https://dajiaji.github.io/i-d-cose-cose-key-jwk-hpke-kem/draft-ajitomi-cose-cose-key-jwk-hpke-kem.html"
 
 author:
- -
-    fullname: Daisuke Ajitomi
-    organization: Independent
-    email: "dajiaji@gmail.com"
+ -  ins: D. Ajitomi
+    name: Daisuke Ajitomi
+    org: Independent
+    email: dajiaji@gmail.com
 
 normative:
   RFC9180:
@@ -290,4 +290,4 @@ TODO
 # Acknowledgments
 {:numbered="false"}
 
-TODO acknowledge.
+We would like to thank Ilari Liusvaara, Laurence Lundblade and Orie Steele for their review feedback.
