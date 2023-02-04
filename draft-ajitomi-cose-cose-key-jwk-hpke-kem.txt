@@ -226,22 +226,20 @@ Table of Contents
        aeads: uint / [+uint],  ; AEAD identifiers
    ]
 
-      +---------+----------------+-------------+----------------------+
-      | Name    | CBOR Type      | Value       | Description          |
-      |         |                | Registry    |                      |
-      +---------+----------------+-------------+----------------------+
-      | kem     | uint           | HPKE KEM    | The KEM identifier   |
-      |         |                | Identifiers | bound to the key     |
-      |         |                |             |                      |
-      | kdfs    | uint / [+uint] | HPKE KDF    | The KDF identifiers  |
-      |         |                | Identifiers | supported by the     |
-      |         |                |             | recipient            |
-      |         |                |             |                      |
-      | aeads   | uint / [+uint] | HPKE AEAD   | The AEAD identifiers |
-      |         |                | Identifiers | supported by the     |
-      |         |                |             | recipient            |
-      |         |                |             |                      |
-      +---------+----------------+-------------+----------------------+
+    +=======+===========+================+============================+
+    | Name  | CBOR Type | Value Registry | Description                |
+    +=======+===========+================+============================+
+    | kem   | uint      | HPKE KEM       | The KEM identifier bound   |
+    |       |           | Identifiers    | to the key                 |
+    +-------+-----------+----------------+----------------------------+
+    | kdfs  | uint /    | HPKE KDF       | The KDF identifiers        |
+    |       | [+uint]   | Identifiers    | supported by the recipient |
+    +-------+-----------+----------------+----------------------------+
+    | aeads | uint /    | HPKE AEAD      | The AEAD identifiers       |
+    |       | [+uint]   | Identifiers    | supported by the recipient |
+    +-------+-----------+----------------+----------------------------+
+
+                 Table 1: HPKE Key Configuration Parameters
 
    The hkc parameter can be used with existing OKP and EC2 keys
    [RFC9053] and the keys for future post-quantum KEMs.

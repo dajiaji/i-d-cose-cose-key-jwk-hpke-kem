@@ -1338,25 +1338,41 @@ HPKE_Key_Configuration = [
 ]
 </pre><a href="#section-3.2.1-3" class="pilcrow">¶</a>
 </div>
-<div class="alignLeft art-text artwork" id="section-3.2.1-4">
-<pre>
-   +---------+----------------+-------------+----------------------+
-   | Name    | CBOR Type      | Value       | Description          |
-   |         |                | Registry    |                      |
-   +---------+----------------+-------------+----------------------+
-   | kem     | uint           | HPKE KEM    | The KEM identifier   |
-   |         |                | Identifiers | bound to the key     |
-   |         |                |             |                      |
-   | kdfs    | uint / [+uint] | HPKE KDF    | The KDF identifiers  |
-   |         |                | Identifiers | supported by the     |
-   |         |                |             | recipient            |
-   |         |                |             |                      |
-   | aeads   | uint / [+uint] | HPKE AEAD   | The AEAD identifiers |
-   |         |                | Identifiers | supported by the     |
-   |         |                |             | recipient            |
-   |         |                |             |                      |
-   +---------+----------------+-------------+----------------------+
-</pre><a href="#section-3.2.1-4" class="pilcrow">¶</a>
+<span id="name-hpke-key-configuration-para"></span><div id="hkc-params">
+<table class="center" id="table-1">
+            <caption>
+<a href="#table-1" class="selfRef">Table 1</a>:
+<a href="#name-hpke-key-configuration-para" class="selfRef">HPKE Key Configuration Parameters</a>
+            </caption>
+<thead>
+              <tr>
+                <th class="text-left" rowspan="1" colspan="1">Name</th>
+                <th class="text-left" rowspan="1" colspan="1">CBOR Type</th>
+                <th class="text-left" rowspan="1" colspan="1">Value Registry</th>
+                <th class="text-left" rowspan="1" colspan="1">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1">kem</td>
+                <td class="text-left" rowspan="1" colspan="1">uint</td>
+                <td class="text-left" rowspan="1" colspan="1">HPKE KEM Identifiers</td>
+                <td class="text-left" rowspan="1" colspan="1">The KEM identifier bound to the key</td>
+              </tr>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1">kdfs</td>
+                <td class="text-left" rowspan="1" colspan="1">uint / [+uint]</td>
+                <td class="text-left" rowspan="1" colspan="1">HPKE KDF Identifiers</td>
+                <td class="text-left" rowspan="1" colspan="1">The KDF identifiers supported by the recipient</td>
+              </tr>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1">aeads</td>
+                <td class="text-left" rowspan="1" colspan="1">uint / [+uint]</td>
+                <td class="text-left" rowspan="1" colspan="1">HPKE AEAD Identifiers</td>
+                <td class="text-left" rowspan="1" colspan="1">The AEAD identifiers supported by the recipient</td>
+              </tr>
+            </tbody>
+          </table>
 </div>
 <p id="section-3.2.1-5">The hkc parameter can be used with existing OKP and EC2 keys <span>[<a href="#RFC9053" class="cite xref">RFC9053</a>]</span> and the keys for future post-quantum KEMs.<a href="#section-3.2.1-5" class="pilcrow">¶</a></p>
 </section>
