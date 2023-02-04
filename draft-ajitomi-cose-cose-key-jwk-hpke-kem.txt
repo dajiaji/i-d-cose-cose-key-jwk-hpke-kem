@@ -454,7 +454,8 @@ A.6.  COSE_Key for DHKEM(X25519, KDF-SHA256) Private Key with Key Type
 
 Acknowledgments
 
-   TODO acknowledge.
+   We would like to thank Ilari Liusvaara, Laurence Lundblade and Orie
+   Steele for their review feedback.
 
 Author's Address
 
