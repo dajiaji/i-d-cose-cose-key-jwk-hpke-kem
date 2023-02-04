@@ -88,11 +88,15 @@ Table of Contents
    Appendix A.  Examples
      A.1.  JWK for DHKEM(P-256, KDF-SHA256) Public Key with Key Type
            "EC"
-     A.2.  JWK for DHKEM(X25519, KDF-SHA256) Private Key with Key Type
+     A.2.  JWK for DHKEM(X25519, KDF-SHA256) Public Key with Key Type
+           "OKP"
+     A.3.  JWK for DHKEM(X25519, KDF-SHA256) Private Key with Key Type
            "HPKE-KEM"
-     A.3.  COSE_Key for DHKEM(P-256, KDF-SHA256) Public Key with Key
+     A.4.  COSE_Key for DHKEM(P-256, KDF-SHA256) Public Key with Key
            Type EC2(2)
-     A.4.  COSE_Key for DHKEM(X448, KDF-SHA512) Private Key with Key
+     A.5.  COSE_Key for DHKEM(X25519, KDF-SHA256) Public Key with Key
+           Type OKP(1)
+     A.6.  COSE_Key for DHKEM(X25519, KDF-SHA256) Private Key with Key
            Type HPKE-KEM(T.B.D)
    Acknowledgments
    Author's Address
@@ -368,7 +372,22 @@ A.1.  JWK for DHKEM(P-256, KDF-SHA256) Public Key with Key Type "EC"
        "y": "BGU5soLgsu_y7GN2I3EPUXS9EZ7Sw0qif-V70JtInFI"
    }
 
-A.2.  JWK for DHKEM(X25519, KDF-SHA256) Private Key with Key Type "HPKE-
+A.2.  JWK for DHKEM(X25519, KDF-SHA256) Public Key with Key Type "OKP"
+
+   {
+       "kty": "OKP",
+       "kid": "01",
+       "crv": "X25519",
+       "alg": "HPKE-v1-Base",
+       "hkc": {
+           "kem": 0x020,
+           "kdfs": [0x001, 0x002, 0x003],
+           "aeads": [0x001, 0x002]
+       },
+       "x": "y3wJq3uXPHeoCO4FubvTc7VcBuqpvUrSvU6ZMbHDTCI"
+   }
+
+A.3.  JWK for DHKEM(X25519, KDF-SHA256) Private Key with Key Type "HPKE-
       KEM"
 
    {
@@ -384,10 +403,10 @@ A.2.  JWK for DHKEM(X25519, KDF-SHA256) Private Key with Key Type "HPKE-
        "priv": "vsJ1oX5NNi0IGdwGldiac75r-Utmq3Jq4LGv48Q_Qc4"
    }
 
-A.3.  COSE_Key for DHKEM(P-256, KDF-SHA256) Public Key with Key Type
+A.4.  COSE_Key for DHKEM(P-256, KDF-SHA256) Public Key with Key Type
       EC2(2)
 
-  {
+{
     1:2,          // EC2
     2:'01',
     3:-1(T.B.D),  // HPKE-v1-Base
@@ -399,23 +418,39 @@ A.3.  COSE_Key for DHKEM(P-256, KDF-SHA256) Public Key with Key Type
     ],
     -2:h'65eda5a12577c2bae829437fe338701a10aaa375e1bb5b5de108de439c08551d',
     -3:h'1e52ed75701163f7f9e40ddf9f341b3dc9ba860af7e0ca7ca7e9eecd0084d19c'
-  }
+}
 
-A.4.  COSE_Key for DHKEM(X448, KDF-SHA512) Private Key with Key Type
+A.5.  COSE_Key for DHKEM(X25519, KDF-SHA256) Public Key with Key Type
+      OKP(1)
+
+{
+    1:1,          // OKP
+    2:'01',
+    3:-1(T.B.D),  // HPKE-v1-Base
+    -1:4,         // X25519
+    6(T.B.D): [   // hkc (HPKE Key Configuration)
+        0x0020,                    // KEM identifier
+        [0x0001, 0x0002, 0x0003],  // supported KDF identifiers
+        [0x0001, 0x0002]           // supported AEAD identifiers
+    ],
+    -2:h'd75a980182b10ab7d54bfed3c964073a0ee172f3daa62325af021a68f707511a'
+}
+
+A.6.  COSE_Key for DHKEM(X25519, KDF-SHA256) Private Key with Key Type
       HPKE-KEM(T.B.D)
 
-  {
+{
     1:-1(T.B.D.),  // HPKE-KEM
     2:'01',
     3:-1(T.B.D),   // HPKE-v1-Base
     6(T.B.D): [    // hkc (HPKE Key Configuration)
-        0x0021,                    // KEM identifier
+        0x0020,                    // KEM identifier
         [0x0001, 0x0002, 0x0003],  // supported KDF identifiers
         [0x0001, 0x0002]           // supported AEAD identifiers
     ],
-    -1:h'5fd7449b59b461fd2ce787ec616ad46a1da1342485a70e1f8a0ea75d80e96778edf124769b46c7061bd6783df1e50f6cd1fa1abeafe8256180',
-    -2:h'6c82a562cb808d10d632be89c8513ebf6c929f34ddfa8c9f63c9960ef6e348a3528c8a3fcc2f044e39a3fc5b94492f8f032e7549a20098f95b'
-  }
+    -1:h'd75a980182b10ab7d54bfed3c964073a0ee172f3daa62325af021a68f707511a',
+    -2:h'9d61b19deffd5a60ba844af492ec2cc44449c5697b326919703bac031cae7f60'
+}
 
 Acknowledgments
 
