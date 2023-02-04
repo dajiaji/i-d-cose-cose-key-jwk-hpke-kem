@@ -26,6 +26,12 @@ author:
     email: "dajiaji@gmail.com"
 
 normative:
+  RFC9180:
+  RFC9052:
+  RFC9053:
+  RFC7517:
+  RFC7518:
+  RFC8037:
 
 informative:
 
@@ -38,7 +44,7 @@ This document defines an additional key parameter and a new key type for CBOR Ob
 
 # Introduction
 
-Hybrid Public Key Encryption (HPKE), published by the Internet Research Task Force (IRTF), has already been adopted in several communication protocol specifications such as TLS Encrypted Client Hello (ECH), Oblivious DNS over HTTPS (ODoH) and Oblivious HTTP (OHTTP).
+Hybrid Public Key Encryption (HPKE) {{RFC9180}}, published by the Internet Research Task Force (IRTF), has already been adopted in several communication protocol specifications such as TLS Encrypted Client Hello (ECH), Oblivious DNS over HTTPS (ODoH) and Oblivious HTTP (OHTTP).
 HPKE itself is communication protocol independent and can be widely used as a standard scheme for public key based end-to-end encryption in various applications, not only in communication protocols.
 
 In HPKE, the sender of a ciphertext needs to know in advance not only the recipient public key, but also the HPKE mode, the KEM associated with the key, and the set of supported KDF and AEAD algorithms.
@@ -47,9 +53,9 @@ For example, the ECH defines it as a structure called HpkeKeyConfig.
 When using HPKE in an application, it is necessary to define the data structure corresponding to the HpkeKeyConfig and how the information is transferred from the recipient to the sender.
 If the data structure and the publication method for the HPKE key configuration information were standardized, it would be easier to use HPKE in applications.
 
-This document defines how to represent the HPKE KEM key configuration information in COSE_Key and JWK.
+This document defines how to represent the HPKE KEM key configuration information in JSON Web Key (JWK) {{RFC7517}} and COSE_Key defined in CBOR Object Signing and Encryption (COSE) Structures and Process {{RFC9052}}.
 Specifically, this document defines (1) a common key parameter for defining the HPKE KEM configuration information in existing key types that can be used for key derivation and (2) a generic key type for HPKE that can also be used to represent a post-quantum KEM to be specified in the future.
-The generic key type for HPKE can be represented by JWK and COSE_Key if the KEM is registered in the HPKE IANA registry, without the need to define dedicated key parameters such as for EC or RSA.
+The generic key type for HPKE can be represented by JWK and COSE_Key if the KEM is registered in the HPKE IANA registry, without the need to define dedicated key parameters such as for EC or RSA ({{RFC7518}}, {{RFC9053}}).
 
 The ability to include HPKE-related information in JWK, which is widely used not only as the public key representation but also as the key publication method (via the JWK Set endpoint) at the application layer, and its binary representation, COSE_Key, will facilitate the use of HPKE in a wide variety of web applications and communication systems for constrained devices.
 
@@ -67,12 +73,14 @@ The parameter can be specified in the key that can be used for key derivation. I
 ### "hkc" (HPKE Key Configuration) Parameter
 
 The "hkc" (KPKE key configuration) parameter identifies the KEM for the recipient key and the set of KDF and AEAD algorithms supported by the recipient.
-It MUST contain the object consisting of the following three attributes.
 A JWK used for HPKE KEM MUST have this parameter.
+It MUST contain the object consisting of the following three attributes.
 
 - "kem": The HPKE KEM identifier, which is a two-byte value registered in the IANA HPKE registry.
 - "kdfs": The array of the HPKE KDF identifiers supported by the recipient. The KDF identifier is also a two-byte value registered in the IANA HPKE registry.
 - "aeads": The array of the HPKE AEAD identifiers supported by the recipient. The AEAD identifier is also a two-byte value registered in the IANA HPKE registry.
+
+The "hkc" parameter can be used with existing "EC" {{RFC7518}} and "OKP" {{RFC8037}} keys and the keys for future post-quantum KEMs.
 
 ### Restrictions on the Use of Existing Key Parameters
 
@@ -121,6 +129,8 @@ HPKE_Key_Configuration = [
    |         |                |             |                      |
    +---------+----------------+-------------+----------------------+
 ~~~
+
+The hkc parameter can be used with existing OKP and EC2 keys {{RFC9053}} and the keys for future post-quantum KEMs.
 
 ### Restrictions on the Use of Existing Key Parameters
 
