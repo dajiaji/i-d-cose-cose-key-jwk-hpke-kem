@@ -111,24 +111,12 @@ HPKE_Key_Configuration = [
 ]
 ~~~
 
-~~~
-   +---------+----------------+-------------+----------------------+
-   | Name    | CBOR Type      | Value       | Description          |
-   |         |                | Registry    |                      |
-   +---------+----------------+-------------+----------------------+
-   | kem     | uint           | HPKE KEM    | The KEM identifier   |
-   |         |                | Identifiers | bound to the key     |
-   |         |                |             |                      |
-   | kdfs    | uint / [+uint] | HPKE KDF    | The KDF identifiers  |
-   |         |                | Identifiers | supported by the     |
-   |         |                |             | recipient            |
-   |         |                |             |                      |
-   | aeads   | uint / [+uint] | HPKE AEAD   | The AEAD identifiers |
-   |         |                | Identifiers | supported by the     |
-   |         |                |             | recipient            |
-   |         |                |             |                      |
-   +---------+----------------+-------------+----------------------+
-~~~
+| Name    | CBOR Type      | Value Registry        | Description                                     |
+| :------ | :------------- | :-------------------- | :---------------------------------------------- |
+| kem     | uint           | HPKE KEM Identifiers  | The KEM identifier bound to the key             |
+| kdfs    | uint / [+uint] | HPKE KDF Identifiers  | The KDF identifiers supported by the recipient  |
+| aeads   | uint / [+uint] | HPKE AEAD Identifiers | The AEAD identifiers supported by the recipient |
+{: #hkc-params title="HPKE Key Configuration Parameters"}
 
 The hkc parameter can be used with existing OKP and EC2 keys {{RFC9053}} and the keys for future post-quantum KEMs.
 
