@@ -1040,7 +1040,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Ajitomi</td>
-<td class="center">Expires 7 August 2023</td>
+<td class="center">Expires 8 August 2023</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1053,12 +1053,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ajitomi-cose-cose-key-jwk-hpke-kem-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2023-02-03" class="published">3 February 2023</time>
+<time datetime="2023-02-04" class="published">4 February 2023</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2023-08-07">7 August 2023</time></dd>
+<dd class="expires"><time datetime="2023-08-08">8 August 2023</time></dd>
 <dt class="label-authors">Author:</dt>
 <dd class="authors">
 <div class="author">
@@ -1108,7 +1108,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 7 August 2023.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 8 August 2023.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1222,16 +1222,16 @@ svg :is([fill="white"], [fill^="#fff"]) {
       <h2 id="name-introduction">
 <a href="#section-1" class="section-number selfRef">1. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
       </h2>
-<p id="section-1-1">Hybrid Public Key Encryption (HPKE), published by the Internet Research Task Force (IRTF), has already been adopted in several communication protocol specifications such as TLS Encrypted Client Hello (ECH), Oblivious DNS over HTTPS (ODoH) and Oblivious HTTP (OHTTP).
+<p id="section-1-1">Hybrid Public Key Encryption (HPKE) <span>[<a href="#RFC9180" class="cite xref">RFC9180</a>]</span>, published by the Internet Research Task Force (IRTF), has already been adopted in several communication protocol specifications such as TLS Encrypted Client Hello (ECH), Oblivious DNS over HTTPS (ODoH) and Oblivious HTTP (OHTTP).
 HPKE itself is communication protocol independent and can be widely used as a standard scheme for public key based end-to-end encryption in various applications, not only in communication protocols.<a href="#section-1-1" class="pilcrow">¶</a></p>
 <p id="section-1-2">In HPKE, the sender of a ciphertext needs to know in advance not only the recipient public key, but also the HPKE mode, the KEM associated with the key, and the set of supported KDF and AEAD algorithms.
 The data structure of this information (hereafter referred to as HPKE key configuration information) is defined in each communication protocol specification that uses HPKE.
 For example, the ECH defines it as a structure called HpkeKeyConfig.
 When using HPKE in an application, it is necessary to define the data structure corresponding to the HpkeKeyConfig and how the information is transferred from the recipient to the sender.
 If the data structure and the publication method for the HPKE key configuration information were standardized, it would be easier to use HPKE in applications.<a href="#section-1-2" class="pilcrow">¶</a></p>
-<p id="section-1-3">This document defines how to represent the HPKE KEM key configuration information in COSE_Key and JWK.
+<p id="section-1-3">This document defines how to represent the HPKE KEM key configuration information in JSON Web Key (JWK) <span>[<a href="#RFC7517" class="cite xref">RFC7517</a>]</span> and COSE_Key defined in CBOR Object Signing and Encryption (COSE) Structures and Process <span>[<a href="#RFC9052" class="cite xref">RFC9052</a>]</span>.
 Specifically, this document defines (1) a common key parameter for defining the HPKE KEM configuration information in existing key types that can be used for key derivation and (2) a generic key type for HPKE that can also be used to represent a post-quantum KEM to be specified in the future.
-The generic key type for HPKE can be represented by JWK and COSE_Key if the KEM is registered in the HPKE IANA registry, without the need to define dedicated key parameters such as for EC or RSA.<a href="#section-1-3" class="pilcrow">¶</a></p>
+The generic key type for HPKE can be represented by JWK and COSE_Key if the KEM is registered in the HPKE IANA registry, without the need to define dedicated key parameters such as for EC or RSA (<span>[<a href="#RFC7518" class="cite xref">RFC7518</a>]</span>, <span>[<a href="#RFC9053" class="cite xref">RFC9053</a>]</span>).<a href="#section-1-3" class="pilcrow">¶</a></p>
 <p id="section-1-4">The ability to include HPKE-related information in JWK, which is widely used not only as the public key representation but also as the key publication method (via the JWK Set endpoint) at the application layer, and its binary representation, COSE_Key, will facilitate the use of HPKE in a wide variety of web applications and communication systems for constrained devices.<a href="#section-1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -1264,8 +1264,8 @@ The parameter can be specified in the key that can be used for key derivation. I
 <a href="#section-3.1.1" class="section-number selfRef">3.1.1. </a><a href="#name-hkc-hpke-key-configuration-" class="section-name selfRef">"hkc" (HPKE Key Configuration) Parameter</a>
           </h4>
 <p id="section-3.1.1-1">The "hkc" (KPKE key configuration) parameter identifies the KEM for the recipient key and the set of KDF and AEAD algorithms supported by the recipient.
-It <span class="bcp14">MUST</span> contain the object consisting of the following three attributes.
-A JWK used for HPKE KEM <span class="bcp14">MUST</span> have this parameter.<a href="#section-3.1.1-1" class="pilcrow">¶</a></p>
+A JWK used for HPKE KEM <span class="bcp14">MUST</span> have this parameter.
+It <span class="bcp14">MUST</span> contain the object consisting of the following three attributes.<a href="#section-3.1.1-1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-3.1.1-2.1">"kem": The HPKE KEM identifier, which is a two-byte value registered in the IANA HPKE registry.<a href="#section-3.1.1-2.1" class="pilcrow">¶</a>
 </li>
@@ -1274,6 +1274,7 @@ A JWK used for HPKE KEM <span class="bcp14">MUST</span> have this parameter.<a h
             <li class="normal" id="section-3.1.1-2.3">"aeads": The array of the HPKE AEAD identifiers supported by the recipient. The AEAD identifier is also a two-byte value registered in the IANA HPKE registry.<a href="#section-3.1.1-2.3" class="pilcrow">¶</a>
 </li>
           </ul>
+<p id="section-3.1.1-3">The "hkc" parameter can be used with existing "EC" <span>[<a href="#RFC7518" class="cite xref">RFC7518</a>]</span> and "OKP" <span>[<a href="#RFC8037" class="cite xref">RFC8037</a>]</span> keys and the keys for future post-quantum KEMs.<a href="#section-3.1.1-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="restrictions-on-the-use-of-existing-key-parameters">
@@ -1351,6 +1352,7 @@ HPKE_Key_Configuration = [
    +---------+----------------+-------------+----------------------+
 </pre><a href="#section-3.2.1-4" class="pilcrow">¶</a>
 </div>
+<p id="section-3.2.1-5">The hkc parameter can be used with existing OKP and EC2 keys <span>[<a href="#RFC9053" class="cite xref">RFC9053</a>]</span> and the keys for future post-quantum KEMs.<a href="#section-3.2.1-5" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="restrictions-on-the-use-of-existing-key-parameters-1">
@@ -1456,9 +1458,33 @@ A key with this kty has the following parameters:<a href="#section-4.2-1" class=
       <dd>
 <span class="refAuthor">Bradner, S.</span>, <span class="refTitle">"Key words for use in RFCs to Indicate Requirement Levels"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 2119</span>, <span class="seriesInfo">DOI 10.17487/RFC2119</span>, <time datetime="1997-03" class="refDate">March 1997</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc2119">https://www.rfc-editor.org/rfc/rfc2119</a>&gt;</span>. </dd>
 <dd class="break"></dd>
+<dt id="RFC7517">[RFC7517]</dt>
+      <dd>
+<span class="refAuthor">Jones, M.</span>, <span class="refTitle">"JSON Web Key (JWK)"</span>, <span class="seriesInfo">RFC 7517</span>, <span class="seriesInfo">DOI 10.17487/RFC7517</span>, <time datetime="2015-05" class="refDate">May 2015</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc7517">https://www.rfc-editor.org/rfc/rfc7517</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC7518">[RFC7518]</dt>
+      <dd>
+<span class="refAuthor">Jones, M.</span>, <span class="refTitle">"JSON Web Algorithms (JWA)"</span>, <span class="seriesInfo">RFC 7518</span>, <span class="seriesInfo">DOI 10.17487/RFC7518</span>, <time datetime="2015-05" class="refDate">May 2015</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc7518">https://www.rfc-editor.org/rfc/rfc7518</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8037">[RFC8037]</dt>
+      <dd>
+<span class="refAuthor">Liusvaara, I.</span>, <span class="refTitle">"CFRG Elliptic Curve Diffie-Hellman (ECDH) and Signatures in JSON Object Signing and Encryption (JOSE)"</span>, <span class="seriesInfo">RFC 8037</span>, <span class="seriesInfo">DOI 10.17487/RFC8037</span>, <time datetime="2017-01" class="refDate">January 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8037">https://www.rfc-editor.org/rfc/rfc8037</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="RFC8174">[RFC8174]</dt>
-    <dd>
+      <dd>
 <span class="refAuthor">Leiba, B.</span>, <span class="refTitle">"Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 8174</span>, <span class="seriesInfo">DOI 10.17487/RFC8174</span>, <time datetime="2017-05" class="refDate">May 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8174">https://www.rfc-editor.org/rfc/rfc8174</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC9052">[RFC9052]</dt>
+      <dd>
+<span class="refAuthor">Schaad, J.</span>, <span class="refTitle">"CBOR Object Signing and Encryption (COSE): Structures and Process"</span>, <span class="seriesInfo">STD 96</span>, <span class="seriesInfo">RFC 9052</span>, <span class="seriesInfo">DOI 10.17487/RFC9052</span>, <time datetime="2022-08" class="refDate">August 2022</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9052">https://www.rfc-editor.org/rfc/rfc9052</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC9053">[RFC9053]</dt>
+      <dd>
+<span class="refAuthor">Schaad, J.</span>, <span class="refTitle">"CBOR Object Signing and Encryption (COSE): Initial Algorithms"</span>, <span class="seriesInfo">RFC 9053</span>, <span class="seriesInfo">DOI 10.17487/RFC9053</span>, <time datetime="2022-08" class="refDate">August 2022</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9053">https://www.rfc-editor.org/rfc/rfc9053</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC9180">[RFC9180]</dt>
+    <dd>
+<span class="refAuthor">Barnes, R.</span>, <span class="refAuthor">Bhargavan, K.</span>, <span class="refAuthor">Lipp, B.</span>, and <span class="refAuthor">C. Wood</span>, <span class="refTitle">"Hybrid Public Key Encryption"</span>, <span class="seriesInfo">RFC 9180</span>, <span class="seriesInfo">DOI 10.17487/RFC9180</span>, <time datetime="2022-02" class="refDate">February 2022</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9180">https://www.rfc-editor.org/rfc/rfc9180</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
 </section>
