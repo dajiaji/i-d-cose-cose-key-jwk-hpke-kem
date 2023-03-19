@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2023-02-05T00:20:09.163652+00:00",
+  "timestamp": "2023-03-19T00:20:45.329742+00:00",
   "repo": "dajiaji/i-d-cose-cose-key-jwk-hpke-kem",
   "labels": [
     {
@@ -689,6 +689,32 @@
       "mergeCommit": {
         "oid": "7d7f6afd608c4f59aed95196d0bd9f4d7dcf332e"
       },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 24,
+      "id": "PR_kwDOIHG51s5MX4k-",
+      "title": "Add LL as author; align HPKE config with 9052",
+      "url": "https://github.com/dajiaji/i-d-cose-cose-key-jwk-hpke-kem/pull/24",
+      "state": "OPEN",
+      "author": "laurencelundblade",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "This aligns the HPKE config structure with the definition of COSE_Key in 9052.\r\n\r\nIt removes algorithm negotiation as the first purpose in the introduction, but the main purpose is to carry a key. I don't mind if this is put back in somewhere as a secondary purpose. \r\n\r\nThe mandatory purpose of the algorithm parameter in 9052 is to restrict key use to the specified algorithms. This changes the HPKE config structure to be essentially an extension/detail of the COSE alg parameter.\r\n\r\nThis removes the MUST on the alg and other parameters as they are not required by COSE_Key. It's really more up to end-use-case protocols, profiles and applications to add those MUSTS, not COSE.",
+      "createdAt": "2023-03-18T21:20:23Z",
+      "updatedAt": "2023-03-18T21:20:23Z",
+      "baseRepository": "dajiaji/i-d-cose-cose-key-jwk-hpke-kem",
+      "baseRefName": "main",
+      "baseRefOid": "7d7f6afd608c4f59aed95196d0bd9f4d7dcf332e",
+      "headRepository": "laurencelundblade/i-d-cose-cose-key-jwk-hpke-kem",
+      "headRefName": "main",
+      "headRefOid": "23143b76d84d8a7cf635605e5d186eb16cd27a79",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
       "comments": [],
       "reviews": []
     }
