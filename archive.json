@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2023-03-19T00:20:45.329742+00:00",
+  "timestamp": "2023-03-21T00:17:50.010123+00:00",
   "repo": "dajiaji/i-d-cose-cose-key-jwk-hpke-kem",
   "labels": [
     {
@@ -704,7 +704,7 @@
       "labels": [],
       "body": "This aligns the HPKE config structure with the definition of COSE_Key in 9052.\r\n\r\nIt removes algorithm negotiation as the first purpose in the introduction, but the main purpose is to carry a key. I don't mind if this is put back in somewhere as a secondary purpose. \r\n\r\nThe mandatory purpose of the algorithm parameter in 9052 is to restrict key use to the specified algorithms. This changes the HPKE config structure to be essentially an extension/detail of the COSE alg parameter.\r\n\r\nThis removes the MUST on the alg and other parameters as they are not required by COSE_Key. It's really more up to end-use-case protocols, profiles and applications to add those MUSTS, not COSE.",
       "createdAt": "2023-03-18T21:20:23Z",
-      "updatedAt": "2023-03-18T21:20:23Z",
+      "updatedAt": "2023-03-19T02:21:52Z",
       "baseRepository": "dajiaji/i-d-cose-cose-key-jwk-hpke-kem",
       "baseRefName": "main",
       "baseRefOid": "7d7f6afd608c4f59aed95196d0bd9f4d7dcf332e",
@@ -716,7 +716,128 @@
       "mergedBy": null,
       "mergeCommit": null,
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOIHG51s5QTrfs",
+          "commit": {
+            "abbreviatedOid": "23143b7"
+          },
+          "author": "dajiaji",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-19T01:13:32Z",
+          "updatedAt": "2023-03-19T01:13:32Z",
+          "comments": [
+            {
+              "originalPosition": 66,
+              "body": "@laurencelundblade Thank you for the pull request! I agree with the part you added below, but I cannot understand the necessity of removing the section above. I think this section has no conflict with the part you added and I also think we have to mention these kind of restrictions because RFC9052 allows us to use these common key parameters (alg, key_ops, etc.) for all key types. Could you please tell me the reason?\r\n\r\n```\r\nWhen this is present, it restricts restricts use of the key to HPKE and to HPKE only with the listed algorithms.\r\nThis structure is essentially extra detail for the \"alg\" parameter specified in section 7.1 of [RFC9052] and thus carries the same semantics as it.\r\nThis extra detail is needed because COSE-HPKE doesn't use the ciphersuite basis for defining algorithms that most of COSE does.\r\n```",
+              "createdAt": "2023-03-19T01:13:32Z",
+              "updatedAt": "2023-03-19T01:13:33Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIHG51s5QTrgb",
+          "commit": {
+            "abbreviatedOid": "23143b7"
+          },
+          "author": "dajiaji",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-19T01:14:43Z",
+          "updatedAt": "2023-03-19T01:14:43Z",
+          "comments": [
+            {
+              "originalPosition": 16,
+              "body": "```suggestion\r\n  RFC7518:\r\n```",
+              "createdAt": "2023-03-19T01:14:43Z",
+              "updatedAt": "2023-03-19T01:14:43Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIHG51s5QTrhA",
+          "commit": {
+            "abbreviatedOid": "23143b7"
+          },
+          "author": "dajiaji",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-19T01:15:31Z",
+          "updatedAt": "2023-03-19T01:15:32Z",
+          "comments": [
+            {
+              "originalPosition": 67,
+              "body": "```suggestion\r\nWhen this is present, it restricts use of the key to HPKE and to HPKE only with the listed algorithms.\r\n```",
+              "createdAt": "2023-03-19T01:15:31Z",
+              "updatedAt": "2023-03-19T01:15:32Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIHG51s5QTrlg",
+          "commit": {
+            "abbreviatedOid": "23143b7"
+          },
+          "author": "dajiaji",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-19T01:17:31Z",
+          "updatedAt": "2023-03-19T01:17:31Z",
+          "comments": [
+            {
+              "originalPosition": 48,
+              "body": "As I mentioned in the COSE key part, I cannot understand the reason why we have to remove the section.",
+              "createdAt": "2023-03-19T01:17:31Z",
+              "updatedAt": "2023-03-19T01:17:31Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIHG51s5QTrtU",
+          "commit": {
+            "abbreviatedOid": "23143b7"
+          },
+          "author": "dajiaji",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-19T01:23:43Z",
+          "updatedAt": "2023-03-19T01:23:43Z",
+          "comments": [
+            {
+              "originalPosition": 77,
+              "body": "Is there any need to remove the entire line? Would it not be sufficient to change MUST to SHOULD or MAY?",
+              "createdAt": "2023-03-19T01:23:43Z",
+              "updatedAt": "2023-03-19T01:23:43Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIHG51s5QTtn4",
+          "commit": {
+            "abbreviatedOid": "23143b7"
+          },
+          "author": "dajiaji",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-19T02:21:52Z",
+          "updatedAt": "2023-03-19T02:21:52Z",
+          "comments": [
+            {
+              "originalPosition": 29,
+              "body": "This is a clarifying question, but I'd like to know the difference between \"for key use restriction\" and \"for end-to-end application algorithm negotiation.\" I believe this removal is related to the concepts you suggested. I can agree with the concepts below, but I don't understand the necessity of removing the entire sentences.\r\nWhen using HPKE in an application, it is necessary to define the data structure corresponding to the HpkeKeyConfig and how the information is transferred from the recipient to the sender.\r\nIf the data structure and the publication method for the HPKE key configuration information were standardized, it would be easier to use HPKE in applications.\r\n```\r\nthe alg and other params are not mandatory, the alg parameter and HPKE key config are for key use restriction, end-end application algorithm negotiation is not a primary purpose.\r\n```\r\n\r\nFor instance, would the following sentences be acceptable to you?\r\n\r\n```suggestion\r\nIn HPKE, the recipient of a ciphertext needs to restrict the use of its public key by the sender. Specifically, the recipient expects the public key to be used with a specific HPKE mode, a specific KEM, and specific KDF and AEAD algorithms that the recipient supports.\r\nThe data structure of this information (hereafter referred to as HPKE key configuration information) is defined in each communication protocol specification that uses HPKE.\r\nFor example, the ECH defines it as a structure called HpkeKeyConfig.\r\nWhen using HPKE in an application, it is desirable to define the data structure corresponding to the HpkeKeyConfig and how the information is transferred from the recipient to the sender.\r\nIf the data structure and the publication method for the HPKE key configuration information were standardized, it would be easier to use HPKE in applications.\r\n```\r\n",
+              "createdAt": "2023-03-19T02:21:52Z",
+              "updatedAt": "2023-03-19T02:21:52Z"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
