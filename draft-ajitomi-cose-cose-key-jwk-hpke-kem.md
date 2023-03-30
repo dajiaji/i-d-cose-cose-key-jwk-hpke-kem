@@ -35,7 +35,7 @@ normative:
   RFC9052:
   RFC9053:
   RFC7517:
-  RC7518:
+  RFC7518:
   RFC8037:
 
 informative:
@@ -81,6 +81,15 @@ It MUST contain the object consisting of the following three attributes.
 
 The "hkc" parameter can be used with existing "EC" {{RFC7518}} and "OKP" {{RFC8037}} keys and the keys for future post-quantum KEMs.
 
+### Restrictions on the Use of Existing Key Parameters
+
+The restrictions on the use of existing common key parameters in a JWK for HPKE KEM are as follows:
+
+- "alg": The parameter MUST be present and contains one of the following values:
+    - "HPKE-v1-Base"
+    - "HPKE-v1-PSK"
+    - "HPKE-v1-Auth"
+    - "HPKE-v1-AuthPSK"
 
 ## COSE Key Common Parameter
 
@@ -107,10 +116,19 @@ HPKE_Key_Configuration = [
 
 The hkc parameter can be used with existing OKP and EC2 keys {{RFC9053}} and the keys for future post-quantum KEMs.
 
-When this is present, it restricts restricts use of the key to HPKE and to HPKE only with the listed algorithms.
+When this is present, it restricts use of the key to HPKE and to HPKE only with the listed algorithms.
 This structure is essentially extra detail for the "alg" parameter specified in section 7.1 of [RFC9052] and thus carries the same semantics as it.
 This extra detail is needed because COSE-HPKE doesn't use the ciphersuite basis for defining algorithms that most of COSE does.
+### Restrictions on the Use of Existing Key Parameters
 
+The restrictions on the use of existing common key parameters in a COSE_Key for the HPKE KEM are as follows:
+
+- alg(3): The parameter MUST be present and contains one of the following values:
+  - HPKE-v1-Base (T.B.D.)
+  - HPKE-v1-PSK (T.B.D.)
+  - HPKE-v1-Auth (T.B.D.)
+  - HPKE-v1-AuthPSK (T.B.D.)
+  
 # Generic Key Type for HPKE KEM
 
 A generic key type for the HPKE KEM keys including a post-quantum KEM defined in the future is defined.
@@ -132,6 +150,7 @@ A new generic kty(1) value HPKE-KEM(T.B.D.) is defined to represent the private 
 A key with this kty has the following parameters:
 
 - The parameter kty(1) MUST be HPKE-KEM(T.B.D).
+- The parameter hkc(T.B.D.) MAY be present and contains the HPKE Key Configuration defined in Section 3.2.1.
 - The parameter pub(-1) MUST be present and contains the public key encoded in a byte string (bstr type).
 - The parameter priv(-2) MUST be present if the key is private key and contains the private key encoded in a byte string (bstr type).
 
