@@ -24,6 +24,11 @@ author:
     name: Daisuke Ajitomi
     org: Independent
     email: dajiaji@gmail.com
+ -  ins: L. Lundblade
+    name: Laurence Lundblade
+    org: Security Theory LLC
+    email: lgl@securitytheory.com
+   
 
 normative:
   RFC9180:
@@ -46,12 +51,6 @@ This document defines an additional key parameter and a new key type for CBOR Ob
 
 Hybrid Public Key Encryption (HPKE) {{RFC9180}}, published by the Internet Research Task Force (IRTF), has already been adopted in several communication protocol specifications such as TLS Encrypted Client Hello (ECH), Oblivious DNS over HTTPS (ODoH) and Oblivious HTTP (OHTTP).
 HPKE itself is communication protocol independent and can be widely used as a standard scheme for public key based end-to-end encryption in various applications, not only in communication protocols.
-
-In HPKE, the sender of a ciphertext needs to know in advance not only the recipient public key, but also the HPKE mode, the KEM associated with the key, and the set of supported KDF and AEAD algorithms.
-The data structure of this information (hereafter referred to as HPKE key configuration information) is defined in each communication protocol specification that uses HPKE.
-For example, the ECH defines it as a structure called HpkeKeyConfig.
-When using HPKE in an application, it is necessary to define the data structure corresponding to the HpkeKeyConfig and how the information is transferred from the recipient to the sender.
-If the data structure and the publication method for the HPKE key configuration information were standardized, it would be easier to use HPKE in applications.
 
 This document defines how to represent a KEM key for HPKE and the HPKE key configuration information in JSON Web Key (JWK) {{RFC7517}} and COSE_Key defined in CBOR Object Signing and Encryption (COSE) Structures and Process {{RFC9052}}.
 Specifically, this document defines (1) a common key parameter for defining the HPKE key configuration information in existing key types that can be used for key derivation and (2) a generic key type for HPKE that can also be used to represent post-quantum KEM keys to be specified in the future.
@@ -91,9 +90,6 @@ The restrictions on the use of existing common key parameters in a JWK for HPKE 
     - "HPKE-v1-PSK"
     - "HPKE-v1-Auth"
     - "HPKE-v1-AuthPSK"
-- "use": The parameter SHOULD NOT be specified. If specified, it MUST be "enc".
-- "key_ops": The parameter SHOULD NOT be specified. If specified, it MUST include "deriveKey" and/or "deriveBits".
-- etc.
 
 ## COSE Key Common Parameter
 
@@ -120,6 +116,9 @@ HPKE_Key_Configuration = [
 
 The hkc parameter can be used with existing OKP and EC2 keys {{RFC9053}} and the keys for future post-quantum KEMs.
 
+When this is present, it restricts use of the key to HPKE and to HPKE only with the listed algorithms.
+This structure is essentially extra detail for the "alg" parameter specified in section 7.1 of [RFC9052] and thus carries the same semantics as it.
+This extra detail is needed because COSE-HPKE doesn't use the ciphersuite basis for defining algorithms that most of COSE does.
 ### Restrictions on the Use of Existing Key Parameters
 
 The restrictions on the use of existing common key parameters in a COSE_Key for the HPKE KEM are as follows:
@@ -129,9 +128,7 @@ The restrictions on the use of existing common key parameters in a COSE_Key for 
   - HPKE-v1-PSK (T.B.D.)
   - HPKE-v1-Auth (T.B.D.)
   - HPKE-v1-AuthPSK (T.B.D.)
-- key_ops(4): The parameter SHOULD NOT be specified. If specified, it MUST include "derive key"(7) and/or "derive bits"(8).
-- etc.
-
+  
 # Generic Key Type for HPKE KEM
 
 A generic key type for the HPKE KEM keys including a post-quantum KEM defined in the future is defined.
@@ -153,7 +150,7 @@ A new generic kty(1) value HPKE-KEM(T.B.D.) is defined to represent the private 
 A key with this kty has the following parameters:
 
 - The parameter kty(1) MUST be HPKE-KEM(T.B.D).
-- The parameter hkc(T.B.D.) MUST be present and contains the HPKE Key Configuration defined in Section 3.2.1.
+- The parameter hkc(T.B.D.) MAY be present and contains the HPKE Key Configuration defined in Section 3.2.1.
 - The parameter pub(-1) MUST be present and contains the public key encoded in a byte string (bstr type).
 - The parameter priv(-2) MUST be present if the key is private key and contains the private key encoded in a byte string (bstr type).
 
